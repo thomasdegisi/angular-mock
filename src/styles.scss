@@ -1,0 +1,27 @@
+@use '@angular/material' as mat;
+@include mat.core();
+
+$my-palette: mat.define-palette(mat.$deep-purple-palette);
+
+.brand-color {
+  background: mat.get-color-from-palette($my-palette, 'darker');
+  color: mat.get-color-from-palette($my-palette, 'darker-contrast');
+}
+
+.center-text {
+  text-align: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+$grow_sizes: (1, 2);
+
+.grow {
+  @each $size in $grow_sizes {
+    &_#{$size} {
+      flex-grow: $size;
+    }
+  }
+}
