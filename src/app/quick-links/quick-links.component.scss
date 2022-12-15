@@ -1,7 +1,16 @@
 a {
-  padding: 5px;
+  display: flex;
+  align-items: center;
 }
 
 div {
   min-height: 10pt;
+}
+
+mat-card-title {
+  font-weight: bold;
+}
+
+mat-icon {
+  padding-right: 8px;
 }

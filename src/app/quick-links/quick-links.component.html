@@ -1,24 +1,33 @@
-<mat-card class="center-text mat-elevation-z8 grow_1">
-  <mat-card-title>Quick Links</mat-card-title>
-  <mat-card-actions>
-    <a mat-icon-button href="https://angular.io/" target="_blank" title="Angular">
-      <mat-icon>article</mat-icon>
-    </a>
+<mat-nav-list class="mat-elevation-z8 grow_1">
+  <mat-card-title class="center-text">Quick Links</mat-card-title>
 
-    <a mat-icon-button href="https://material.angular.io/" target="_blank" title="Angular Material">
-      <mat-icon>article</mat-icon>
+  <mat-list-item>
+    <a href="https://angular.io/" target="_blank" matTooltip="Angular">
+      <mat-icon svgIcon="angular"></mat-icon>Angular Documentation
     </a>
+  </mat-list-item>
 
-    <a mat-icon-button href="https://github.com/thomasdegisi?tab=repositories" target="_blank" title="My GitHub Repositories">
-      <mat-icon svgIcon="github"></mat-icon>
+  <mat-list-item>
+    <a href="https://material.angular.io/" target="_blank">
+      <mat-icon svgIcon="material">material</mat-icon>Angular Material Documentation
     </a>
+  </mat-list-item>
 
-    <a mat-icon-button href="https://www.linkedin.com/in/tom-degisi-b297338/" target="_blank" title="My Linked In">
-      <mat-icon svgIcon="linked-in"></mat-icon>
+  <mat-list-item>
+    <a href="https://github.com/thomasdegisi?tab=repositories" target="_blank">
+      <mat-icon svgIcon="github"></mat-icon>Personal GitHub Repositories
     </a>
+  </mat-list-item>
 
-    <a mat-icon-button href="href=mailto:tomdegisi@gmail.com" title="Email Me">
-      <mat-icon>mail</mat-icon>
+  <mat-list-item>
+    <a href="https://www.linkedin.com/in/tom-degisi-b297338/" target="_blank">
+      <mat-icon svgIcon="linked-in"></mat-icon>Personal LinkedIn
     </a>
-  </mat-card-actions>
-</mat-card>
+  </mat-list-item>
+
+  <mat-list-item>
+    <a href="href=mailto:tomdegisi@gmail.com" matTooltip="Email Me">
+      <mat-icon>mail</mat-icon>tomdegisi@gmail.com
+    </a>
+  </mat-list-item>
+</mat-nav-list>
