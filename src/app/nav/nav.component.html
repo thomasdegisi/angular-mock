@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+  <button
+    type="button"
+    aria-label="Toggle sidenav"
+    mat-icon-button
+    (click)="drawer.toggle()">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+  <span>Angular Mock</span>
+  <span class="spacer"></span>
+  <span>TD</span>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container" hasBackdrop="false">
+  <mat-sidenav #drawer class="sidenav"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-nav-list>
+      <a mat-list-item href="#">Customers</a>
+      <a mat-list-item href="#">Getting Loyalty Points</a>
+      <a mat-list-item href="#">Spending Loyalty Points</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-home></app-home>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -19,6 +19,9 @@ import { BrandComponent } from './brand/brand.component';
 import { AnnouncementsComponent } from './announcements/announcements.component';
 import { QuickLinksComponent } from './quick-links/quick-links.component';
 import { UuidGenComponent, UuidShowComponent } from './uuid-gen/uuid-gen.component';
+import { NavComponent } from './nav/nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,7 @@ import { UuidGenComponent, UuidShowComponent } from './uuid-gen/uuid-gen.compone
     QuickLinksComponent,
     UuidGenComponent,
     UuidShowComponent,
+    NavComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -43,6 +47,8 @@ import { UuidGenComponent, UuidShowComponent } from './uuid-gen/uuid-gen.compone
     MatListModule,
     MatToolbarModule,
     MatTooltipModule,
+    LayoutModule,
+    MatSidenavModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
