@@ -4,49 +4,54 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LayoutModule } from '@angular/cdk/layout';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { ChronologyComponent } from './chronology/chronology.component';
 import { BrandComponent } from './brand/brand.component';
-import { AnnouncementsComponent } from './announcements/announcements.component';
+import { HomeComponent } from './home/home.component';
+import { NavComponent } from './nav/nav.component';
 import { QuickLinksComponent } from './quick-links/quick-links.component';
 import { UuidGenComponent, UuidShowComponent } from './uuid-gen/uuid-gen.component';
-import { NavComponent } from './nav/nav.component';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     BrandComponent,
-    AnnouncementsComponent,
+    ChronologyComponent,
+    HomeComponent,
+    NavComponent,
     QuickLinksComponent,
     UuidGenComponent,
     UuidShowComponent,
-    NavComponent,
   ],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
     ClipboardModule,
+    FormsModule,
+    LayoutModule,
     HttpClientModule,
     MatBottomSheetModule,
     MatButtonModule,
     MatCardModule,
     MatIconModule,
     MatListModule,
+    MatSidenavModule,
     MatToolbarModule,
     MatTooltipModule,
-    LayoutModule,
-    MatSidenavModule,
+    ReactiveFormsModule,
+    ScrollingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

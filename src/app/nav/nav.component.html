@@ -11,8 +11,8 @@
   <span>TD</span>
 </mat-toolbar>
 
-<mat-sidenav-container class="sidenav-container" hasBackdrop="false">
-  <mat-sidenav #drawer class="sidenav"
+<mat-sidenav-container class="sidenav-container mat-elevation-z8" hasBackdrop="false">
+  <mat-sidenav #drawer class="sidenav mat-elevation-z8"
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="'side'"
       [opened]="(isHandset$ | async) === false">
@@ -22,7 +22,7 @@
       <a mat-list-item href="#">Spending Loyalty Points</a>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content class="sidenav-content">
     <app-home></app-home>
   </mat-sidenav-content>
 </mat-sidenav-container>
