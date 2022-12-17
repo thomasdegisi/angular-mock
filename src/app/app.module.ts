@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
@@ -15,6 +18,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { BrandComponent } from './brand/brand.component';
 import { AnnouncementsComponent } from './announcements/announcements.component';
 import { QuickLinksComponent } from './quick-links/quick-links.component';
+import { UuidGenComponent, UuidShowComponent } from './uuid-gen/uuid-gen.component';
 
 @NgModule({
   declarations: [
@@ -24,10 +28,15 @@ import { QuickLinksComponent } from './quick-links/quick-links.component';
     BrandComponent,
     AnnouncementsComponent,
     QuickLinksComponent,
+    UuidGenComponent,
+    UuidShowComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
+    ClipboardModule,
     HttpClientModule,
+    MatBottomSheetModule,
     MatButtonModule,
     MatCardModule,
     MatIconModule,

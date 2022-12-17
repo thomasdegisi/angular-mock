@@ -1,0 +1,8 @@
+<div>
+  <a mat-raised-button [cdkCopyToClipboard]="getUUID()">
+    <div mat-h3 class="top">Copy UUID to Clipboard</div>
+    <div mat-h4 class="bottom">UUID: {{ uuid }}</div>
+  </a>
+
+  <button mat-raised-button (click)="close()">Close</button>
+</div>
