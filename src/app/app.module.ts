@@ -14,7 +14,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
 import { BrandComponent } from './brand/brand.component';
 import { AnnouncementsComponent } from './announcements/announcements.component';
 import { QuickLinksComponent } from './quick-links/quick-links.component';
@@ -27,7 +26,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
   declarations: [
     AppComponent,
     HomeComponent,
-    ToolbarComponent,
     BrandComponent,
     AnnouncementsComponent,
     QuickLinksComponent,
