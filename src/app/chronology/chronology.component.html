@@ -1,6 +1,6 @@
 <mat-list class="mat-elevation-z8">
   <h1 class="center-text">Chronology</h1>
   <cdk-virtual-scroll-viewport itemSize="20" class="chronology-viewport">
-    <mat-list-item *cdkVirtualFor="let item of items" class="chronology-item">{{item}}</mat-list-item>
+    <mat-list-item *cdkVirtualFor="let item of items" class="chronology-item">{{ fmtChronologyItem(item) }}</mat-list-item>
   </cdk-virtual-scroll-viewport>
 </mat-list>

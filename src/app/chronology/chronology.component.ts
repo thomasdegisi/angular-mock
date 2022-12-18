@@ -1,4 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, LOCALE_ID } from '@angular/core';
+import { formatDate } from '@angular/common';
+import { MockTrxService } from 'src/app/mock/services/mock-trx.service';
+import { CHRONOLOGY_ITEM_TYPE_ID, Trx } from 'src/app/models/trx';
 
 @Component({
   selector: 'app-chronology',
@@ -7,5 +10,17 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChronologyComponent {
-  items = Array.from({length: 10000}).map((_, i) => `2022-12-17 11:00:00 CST: God is good. He loves us. His creation is glorious. Item #${i}`);
+  items: Trx[];
+
+  constructor(
+    @Inject(LOCALE_ID) private locale: string,
+    private trxService: MockTrxService
+  ) {
+    this.items = trxService.getTrxList(CHRONOLOGY_ITEM_TYPE_ID);
+  }
+
+  fmtChronologyItem(chronologyItem: Trx): string {
+    return formatDate(chronologyItem.timestamp, chronologyItem.tsFormat, this.locale) +
+      ': ' + chronologyItem.text;
+  }
 }
