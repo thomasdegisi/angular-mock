@@ -29,18 +29,18 @@ export class NavComponent {
       case 'chronology-event':
         this.showAddEvent();
         break;
-      case 'customers':
-        this.showCustomers();
-        break;
-      case 'get-points':
-        this.showGetPoints();
-        break;
       case '':
         this.showHome();
         break;
+      case 'customers':
+//        this.showCustomers();
+//        break;
+      case 'get-points':
+//        this.showGetPoints();
+//        break;
       case 'spend-points':
-        this.showSpendPoints();
-        break;
+//        this.showSpendPoints();
+//        break;
       case 'under':
         this.showUnderConstruction();
         break;
