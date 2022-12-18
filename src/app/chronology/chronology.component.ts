@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Inject, LOCALE_ID } from '@angular/core';
 import { formatDate } from '@angular/common';
+import { CHRONOLOGY_EVENT_TYPE_ID, Trx } from 'src/app/models/trx';
 import { MockTrxService } from 'src/app/mock/services/mock-trx.service';
-import { CHRONOLOGY_ITEM_TYPE_ID, Trx } from 'src/app/models/trx';
 
 @Component({
   selector: 'app-chronology',
@@ -10,17 +10,17 @@ import { CHRONOLOGY_ITEM_TYPE_ID, Trx } from 'src/app/models/trx';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChronologyComponent {
-  items: Trx[];
+  events: Trx[];
 
   constructor(
     @Inject(LOCALE_ID) private locale: string,
     private trxService: MockTrxService
   ) {
-    this.items = trxService.getTrxList(CHRONOLOGY_ITEM_TYPE_ID);
+    this.events = trxService.getTrxList(CHRONOLOGY_EVENT_TYPE_ID);
   }
 
-  fmtChronologyItem(chronologyItem: Trx): string {
-    return formatDate(chronologyItem.timestamp, chronologyItem.tsFormat, this.locale) +
-      ': ' + chronologyItem.text;
+  fmtChronologyEvent(chronologyEvent: Trx): string {
+    return formatDate(chronologyEvent.timestamp, chronologyEvent.tsFormat, this.locale) +
+      ': ' + chronologyEvent.text;
   }
 }

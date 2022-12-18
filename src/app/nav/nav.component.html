@@ -9,20 +9,33 @@
   <span>Angular Mock</span>
   <span class="spacer"></span>
   <span>TD</span>
+  <button
+    type="button"
+    mat-icon-button
+    routerLink="/" (click)="showHome()">
+    <mat-icon aria-label="Home page">home</mat-icon>
+  </button>
 </mat-toolbar>
 
-<mat-sidenav-container class="sidenav-container mat-elevation-z8" hasBackdrop="false">
+<mat-sidenav-container class="sidenav-container" hasBackdrop="false">
   <mat-sidenav #drawer class="sidenav mat-elevation-z8"
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="'side'"
       [opened]="(isHandset$ | async) === false">
     <mat-nav-list>
-      <a mat-list-item href="#">Customers</a>
-      <a mat-list-item href="#">Getting Loyalty Points</a>
-      <a mat-list-item href="#">Spending Loyalty Points</a>
+      <a mat-list-item routerLink="/customers" (click)="showCustomers()">Customers</a>
+      <a mat-list-item routerLink="/get-points" (click)="showGetPoints()">Getting Loyalty Points</a>
+      <a mat-list-item routerLink="/spend-points" (click)="showSpendPoints()">Spending Loyalty Points</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="sidenav-content">
-    <app-home></app-home>
+    <app-chronology-event *ngIf="addEventActive"></app-chronology-event>
+    <app-customers *ngIf="customersActive"></app-customers>
+    <app-get-points *ngIf="getPointsActive"></app-get-points>
+    <app-home *ngIf="homeActive"></app-home>
+    <app-spend-points *ngIf="spendPointsActive"></app-spend-points>
+    <app-page-not-found *ngIf="notFoundActive"></app-page-not-found>
+    <app-under-construction *ngIf="underConstructionActive"></app-under-construction>
   </mat-sidenav-content>
 </mat-sidenav-container>
+<router-outlet></router-outlet>

@@ -1,6 +1,8 @@
-<mat-list class="mat-elevation-z8">
+<mat-list class="chronology-list mat-elevation-z8">
   <h1 class="center-text">Chronology</h1>
   <cdk-virtual-scroll-viewport itemSize="20" class="chronology-viewport">
-    <mat-list-item *cdkVirtualFor="let item of items" class="chronology-item">{{ fmtChronologyItem(item) }}</mat-list-item>
+    <mat-list-item *cdkVirtualFor="let event of events" class="chronology-event">{{ fmtChronologyEvent(event) }}</mat-list-item>
   </cdk-virtual-scroll-viewport>
+  <a mat-raised-button color="primary" href="/chronology-event"><mat-icon>add_circle_outline</mat-icon></a>
 </mat-list>
+<router-outlet></router-outlet>

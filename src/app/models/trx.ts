@@ -9,5 +9,5 @@ export interface Trx {
 }
 
 export const TYPE_TYPE_ID: number = 0;
-export const CHRONOLOGY_ITEM_TYPE_ID: number = 1;
+export const CHRONOLOGY_EVENT_TYPE_ID: number = 1;
 export const LOYALTY_TRX_TYPE_ID: number = 2;

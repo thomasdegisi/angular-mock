@@ -15,9 +15,9 @@ export const TRX_LIST: Trx[] = [
     typeId: 0,
     linkUUID: null,
     timestamp: new Date(2022, 11, 16, 21, 0, 0, 0),
-    text: 'Chronology Item',
+    text: 'Chronology Event',
     tsFormat: 'yyyy-MM-dd',
-    value: 1, // Chronology Items will have typeId: 1
+    value: 1, // Chronology Events will have typeId: 1
   },
   {
     uuid: 'bc47f743-91ea-450b-a2e2-4144a5f1c298',

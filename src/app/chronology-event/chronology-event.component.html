@@ -1,0 +1,50 @@
+<form [formGroup]="eventForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Chronology Event</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="UUID" formControlName="uuid">
+            <mat-error *ngIf="eventForm.controls['uuid'].hasError('required')">
+              UUID is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Timestamp" formControlName="timestamp">
+            <mat-error *ngIf="eventForm.controls['timestamp'].hasError('required')">
+              Timestamp is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Timestamp Format" formControlName="tsFormat">
+            <mat-error *ngIf="eventForm.controls['tsFormat'].hasError('required')">
+              Timestamp Format is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Text" formControlName="text"></textarea>
+            <mat-error *ngIf="eventForm.controls['text'].hasError('required')">
+              Text is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
