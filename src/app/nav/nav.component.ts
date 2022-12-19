@@ -11,6 +11,7 @@ import { map, shareReplay } from 'rxjs/operators';
 })
 export class NavComponent {
   addEventActive: boolean = false;
+  customerEditActive: boolean = false;
   customersActive: boolean = false;
   getPointsActive: boolean = false;
   homeActive: boolean = false;
@@ -32,9 +33,12 @@ export class NavComponent {
       case '':
         this.showHome();
         break;
-      case 'customers':
-//        this.showCustomers();
-//        break;
+        case 'customer-edit':
+          this.showCustomerEdit();
+          break;
+        case 'customers':
+          this.showCustomers();
+          break;
       case 'get-points':
 //        this.showGetPoints();
 //        break;
@@ -52,6 +56,18 @@ export class NavComponent {
 
   showAddEvent() {
     this.addEventActive = true;
+    this.customerEditActive = false;
+    this.customersActive = false;
+    this.getPointsActive = false;
+    this.homeActive = false;
+    this.notFoundActive = false;
+    this.spendPointsActive = false;
+    this.underConstructionActive = false;
+  }
+
+  showCustomerEdit() {
+    this.addEventActive = false;
+    this.customerEditActive = true;
     this.customersActive = false;
     this.getPointsActive = false;
     this.homeActive = false;
@@ -62,6 +78,7 @@ export class NavComponent {
 
   showCustomers() {
     this.addEventActive = false;
+    this.customerEditActive = false;
     this.customersActive = true;
     this.getPointsActive = false;
     this.homeActive = false;
@@ -72,6 +89,7 @@ export class NavComponent {
 
   showGetPoints() {
     this.addEventActive = false;
+    this.customerEditActive = false;
     this.customersActive = false;
     this.getPointsActive = true;
     this.homeActive = false;
@@ -82,6 +100,7 @@ export class NavComponent {
 
   showHome() {
     this.addEventActive = false;
+    this.customerEditActive = false;
     this.customersActive = false;
     this.getPointsActive = false;
     this.homeActive = true;
@@ -92,6 +111,7 @@ export class NavComponent {
 
   showNotFound() {
     this.addEventActive = false;
+    this.customerEditActive = false;
     this.customersActive = false;
     this.getPointsActive = false;
     this.homeActive = false;
@@ -102,6 +122,7 @@ export class NavComponent {
 
   showSpendPoints() {
     this.addEventActive = false;
+    this.customerEditActive = false;
     this.customersActive = false;
     this.getPointsActive = false;
     this.homeActive = false;
@@ -112,6 +133,7 @@ export class NavComponent {
 
   showUnderConstruction() {
     this.addEventActive = false;
+    this.customerEditActive = false;
     this.customersActive = false;
     this.getPointsActive = false;
     this.homeActive = false;

@@ -9,12 +9,16 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
@@ -25,15 +29,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrandComponent } from './brand/brand.component';
 import { ChronologyComponent } from './chronology/chronology.component';
 import { ChronologyEventComponent } from './chronology-event/chronology-event.component';
-import { HomeComponent } from './home/home.component';
-import { NavComponent } from './nav/nav.component';
-import { QuickLinksComponent } from './quick-links/quick-links.component';
-import { UuidGenComponent, UuidShowComponent } from './uuid-gen/uuid-gen.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { UnderConstructionComponent } from './under-construction/under-construction.component';
+import { CustomerEditComponent } from './customer-edit/customer-edit.component';
 import { CustomersComponent } from './customers/customers.component';
 import { GetPointsComponent } from './get-points/get-points.component';
+import { HomeComponent } from './home/home.component';
+import { NavComponent } from './nav/nav.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { QuickLinksComponent } from './quick-links/quick-links.component';
 import { SpendPointsComponent } from './spend-points/spend-points.component';
+import { UnderConstructionComponent } from './under-construction/under-construction.component';
+import { UuidGenComponent, UuidShowComponent } from './uuid-gen/uuid-gen.component';
 
 @NgModule({
   declarations: [
@@ -41,16 +46,17 @@ import { SpendPointsComponent } from './spend-points/spend-points.component';
     BrandComponent,
     ChronologyComponent,
     ChronologyEventComponent,
-    HomeComponent,
-    NavComponent,
-    QuickLinksComponent,
-    UuidGenComponent,
-    UuidShowComponent,
-    PageNotFoundComponent,
-    UnderConstructionComponent,
+    CustomerEditComponent,
     CustomersComponent,
     GetPointsComponent,
+    HomeComponent,
+    NavComponent,
+    PageNotFoundComponent,
+    QuickLinksComponent,
     SpendPointsComponent,
+    UnderConstructionComponent,
+    UuidGenComponent,
+    UuidShowComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -62,12 +68,16 @@ import { SpendPointsComponent } from './spend-points/spend-points.component';
     MatBottomSheetModule,
     MatButtonModule,
     MatCardModule,
+    MatDividerModule,
     MatIconModule,
     MatInputModule,
     MatListModule,
+    MatPaginatorModule,
     MatRadioModule,
     MatSelectModule,
     MatSidenavModule,
+    MatSortModule,
+    MatTableModule,
     MatToolbarModule,
     MatTooltipModule,
     ReactiveFormsModule,

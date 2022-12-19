@@ -3,6 +3,10 @@
 
 $my-palette: mat.define-palette(mat.$deep-purple-palette);
 
+.add-button {
+  margin: 8px;
+}
+
 .brand-color {
   background: mat.get-color-from-palette($my-palette, 'darker');
   color: mat.get-color-from-palette($my-palette, 'darker-contrast');
