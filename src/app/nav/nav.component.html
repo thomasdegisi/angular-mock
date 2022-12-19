@@ -24,17 +24,16 @@
       [opened]="(isHandset$ | async) === false">
     <mat-nav-list>
       <a mat-list-item routerLink="/customers" (click)="showCustomers()">Customers</a>
-      <a mat-list-item routerLink="/get-points" (click)="showGetPoints()">Getting Loyalty Points</a>
-      <a mat-list-item routerLink="/spend-points" (click)="showUnderConstruction()">Spending Loyalty Points</a>
+      <a mat-list-item routerLink="/get-points" (click)="showPoints()">Getting Loyalty Points</a>
+      <a mat-list-item routerLink="/spend-points" (click)="showPoints()">Spending Loyalty Points</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="sidenav-content">
     <app-chronology-event *ngIf="addEventActive"></app-chronology-event>
     <app-customer-edit *ngIf="customerEditActive"></app-customer-edit>
     <app-customers *ngIf="customersActive"></app-customers>
-    <app-get-points *ngIf="getPointsActive"></app-get-points>
     <app-home *ngIf="homeActive"></app-home>
-    <app-spend-points *ngIf="spendPointsActive"></app-spend-points>
+    <app-points *ngIf="pointsActive"></app-points>
     <app-page-not-found *ngIf="notFoundActive"></app-page-not-found>
     <app-under-construction *ngIf="underConstructionActive"></app-under-construction>
   </mat-sidenav-content>

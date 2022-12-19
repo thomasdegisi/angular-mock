@@ -253,6 +253,42 @@ export const TRX_LIST: Trx[] = [
     text: 'Cater an event.',
     value: 5000,
   },
+  {
+    uuid: '78fe00a9-99d6-4397-b723-c7275805cfef',
+    typeId: 3,
+    linkUUID: null,
+    timestamp: new Date(),
+    tsFormat: 'yyyy-MM-dd',
+    text: 'Buy a full price meal, get a cocktail free.',
+    value: 1000,
+  },
+  {
+    uuid: '13e6e745-dbaa-4c53-abe2-3d75511fda70',
+    typeId: 3,
+    linkUUID: null,
+    timestamp: new Date(),
+    tsFormat: 'yyyy-MM-dd',
+    text: 'Buy a full price meal, get a premium cocktail free.',
+    value: 2000,
+  },
+  {
+    uuid: 'bf7af7d7-7e33-4fa5-a339-49a36c9e7554',
+    typeId: 3,
+    linkUUID: null,
+    timestamp: new Date(),
+    tsFormat: 'yyyy-MM-dd',
+    text: 'Buy a cocktail, get a second cocktail free.',
+    value: 4000,
+  },
+  {
+    uuid: 'cbed02ca-741f-4599-adad-52575cc0c420',
+    typeId: 3,
+    linkUUID: null,
+    timestamp: new Date(),
+    tsFormat: 'yyyy-MM-dd',
+    text: 'Buy a premium cocktail, get a second premium cocktail free.',
+    value: 8000,
+  },
 ];
 
 /* blank

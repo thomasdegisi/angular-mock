@@ -4,15 +4,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 
-import { GetPointsComponent } from './get-points.component';
+import { PointsComponent } from './points.component';
 
-describe('GetPointsComponent', () => {
-  let component: GetPointsComponent;
-  let fixture: ComponentFixture<GetPointsComponent>;
+describe('PointsComponent', () => {
+  let component: PointsComponent;
+  let fixture: ComponentFixture<PointsComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ GetPointsComponent ],
+      declarations: [ PointsComponent ],
       imports: [
         NoopAnimationsModule,
         MatPaginatorModule,
@@ -23,7 +23,7 @@ describe('GetPointsComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GetPointsComponent);
+    fixture = TestBed.createComponent(PointsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

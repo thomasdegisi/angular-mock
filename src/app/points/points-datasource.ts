@@ -10,7 +10,7 @@ import { Trx } from '../models/trx';
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class GetPointsDataSource extends DataSource<Trx> {
+export class PointsDataSource extends DataSource<Trx> {
   data: Trx[];
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;

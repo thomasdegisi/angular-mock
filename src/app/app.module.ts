@@ -31,12 +31,11 @@ import { ChronologyComponent } from './chronology/chronology.component';
 import { ChronologyEventComponent } from './chronology-event/chronology-event.component';
 import { CustomerEditComponent } from './customer-edit/customer-edit.component';
 import { CustomersComponent } from './customers/customers.component';
-import { GetPointsComponent } from './get-points/get-points.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PointsComponent } from './points/points.component';
 import { QuickLinksComponent } from './quick-links/quick-links.component';
-import { SpendPointsComponent } from './spend-points/spend-points.component';
 import { UnderConstructionComponent } from './under-construction/under-construction.component';
 import { UuidGenComponent, UuidShowComponent } from './uuid-gen/uuid-gen.component';
 
@@ -48,12 +47,11 @@ import { UuidGenComponent, UuidShowComponent } from './uuid-gen/uuid-gen.compone
     ChronologyEventComponent,
     CustomerEditComponent,
     CustomersComponent,
-    GetPointsComponent,
     HomeComponent,
     NavComponent,
     PageNotFoundComponent,
+    PointsComponent,
     QuickLinksComponent,
-    SpendPointsComponent,
     UnderConstructionComponent,
     UuidGenComponent,
     UuidShowComponent,

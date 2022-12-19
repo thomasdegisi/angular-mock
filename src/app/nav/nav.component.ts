@@ -13,10 +13,9 @@ export class NavComponent {
   addEventActive: boolean = false;
   customerEditActive: boolean = false;
   customersActive: boolean = false;
-  getPointsActive: boolean = false;
   homeActive: boolean = false;
   notFoundActive: boolean = false;
-  spendPointsActive: boolean = false;
+  pointsActive: boolean = false;
   underConstructionActive: boolean = false;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -33,18 +32,16 @@ export class NavComponent {
       case '':
         this.showHome();
         break;
-        case 'customer-edit':
-          this.showCustomerEdit();
-          break;
-        case 'customers':
-          this.showCustomers();
-          break;
-      case 'get-points':
-        this.showGetPoints();
+      case 'customer-edit':
+        this.showCustomerEdit();
         break;
+      case 'customers':
+        this.showCustomers();
+        break;
+      case 'get-points':
       case 'spend-points':
-//        this.showSpendPoints();
-//        break;
+        this.showPoints();
+        break;
       case 'under':
         this.showUnderConstruction();
         break;
@@ -58,10 +55,9 @@ export class NavComponent {
     this.addEventActive = true;
     this.customerEditActive = false;
     this.customersActive = false;
-    this.getPointsActive = false;
     this.homeActive = false;
     this.notFoundActive = false;
-    this.spendPointsActive = false;
+    this.pointsActive = false;
     this.underConstructionActive = false;
   }
 
@@ -69,10 +65,9 @@ export class NavComponent {
     this.addEventActive = false;
     this.customerEditActive = true;
     this.customersActive = false;
-    this.getPointsActive = false;
     this.homeActive = false;
     this.notFoundActive = false;
-    this.spendPointsActive = false;
+    this.pointsActive = false;
     this.underConstructionActive = false;
   }
 
@@ -80,21 +75,19 @@ export class NavComponent {
     this.addEventActive = false;
     this.customerEditActive = false;
     this.customersActive = true;
-    this.getPointsActive = false;
     this.homeActive = false;
     this.notFoundActive = false;
-    this.spendPointsActive = false;
+    this.pointsActive = false;
     this.underConstructionActive = false;
   }
 
-  showGetPoints() {
+  showPoints() {
     this.addEventActive = false;
     this.customerEditActive = false;
     this.customersActive = false;
-    this.getPointsActive = true;
     this.homeActive = false;
     this.notFoundActive = false;
-    this.spendPointsActive = false;
+    this.pointsActive = true;
     this.underConstructionActive = false;
   }
 
@@ -102,10 +95,9 @@ export class NavComponent {
     this.addEventActive = false;
     this.customerEditActive = false;
     this.customersActive = false;
-    this.getPointsActive = false;
     this.homeActive = true;
     this.notFoundActive = false;
-    this.spendPointsActive = false;
+    this.pointsActive = false;
     this.underConstructionActive = false;
   }
 
@@ -113,21 +105,9 @@ export class NavComponent {
     this.addEventActive = false;
     this.customerEditActive = false;
     this.customersActive = false;
-    this.getPointsActive = false;
     this.homeActive = false;
     this.notFoundActive = true;
-    this.spendPointsActive = false;
-    this.underConstructionActive = false;
-  }
-
-  showSpendPoints() {
-    this.addEventActive = false;
-    this.customerEditActive = false;
-    this.customersActive = false;
-    this.getPointsActive = false;
-    this.homeActive = false;
-    this.notFoundActive = false;
-    this.spendPointsActive = true;
+    this.pointsActive = false;
     this.underConstructionActive = false;
   }
 
@@ -135,10 +115,9 @@ export class NavComponent {
     this.addEventActive = false;
     this.customerEditActive = false;
     this.customersActive = false;
-    this.getPointsActive = false;
     this.homeActive = false;
     this.notFoundActive = false;
-    this.spendPointsActive = false;
+    this.pointsActive = false;
     this.underConstructionActive = true;
   }
 }
