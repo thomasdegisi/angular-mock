@@ -20,13 +20,31 @@ export const TRX_LIST: Trx[] = [
     value: 1, // Chronology Events will have typeId: 1
   },
   {
+    uuid: '942b70e1-8a36-40d3-8293-58da058a1fa8',
+    typeId: 0,
+    linkUUID: null,
+    timestamp: new Date(2022, 11, 18, 19, 51, 0, 0),
+    tsFormat: 'yyyy-MM-dd',
+    text: 'Get Loyalty',
+    value: 2, // Get Loyalty will have typeId: 2
+  },
+  {
+    uuid: '195b7371-9498-4c05-a730-2092e987bc53',
+    typeId: 0,
+    linkUUID: null,
+    timestamp: new Date(2022, 11, 18, 19, 51, 0, 0),
+    tsFormat: 'yyyy-MM-dd',
+    text: 'Spend Loyalty',
+    value: 3, // Spend Loyalty will have typeId: 3
+  },
+  {
     uuid: 'bc47f743-91ea-450b-a2e2-4144a5f1c298',
     typeId: 0,
     linkUUID: null,
     timestamp: new Date(2022, 11, 16, 21, 0, 0, 0),
     text: 'Loyalty Transaction',
     tsFormat: 'yyyy-MM-dd',
-    value: 2, // Loyalty Transactions will have typeId: 2
+    value: 4, // Loyalty Transactions will have typeId: 4
   },
   {
     uuid: 'b1c2e9f6-0ecd-4803-9686-4d6603ff6ac1',
@@ -190,5 +208,61 @@ export const TRX_LIST: Trx[] = [
     text: 'Janice Marie Clark born.',
     value: 0,
   },
-  // 
+  {
+    uuid: 'd02e0341-3912-4feb-be1f-b8a36b1d3e51',
+    typeId: 2,
+    linkUUID: null,
+    timestamp: new Date(),
+    tsFormat: 'yyyy-MM-dd',
+    text: 'Buy a premium cocktail.',
+    value: 200,
+  },
+  {
+    uuid: '90c673a5-51a5-491a-a8a8-2ec4bc1df496',
+    typeId: 2,
+    linkUUID: null,
+    timestamp: new Date(),
+    tsFormat: 'yyyy-MM-dd',
+    text: 'Buy a bottle.',
+    value: 300,
+  },
+  {
+    uuid: 'e0d3c650-a774-45da-baca-d46d91801b0f',
+    typeId: 2,
+    linkUUID: null,
+    timestamp: new Date(),
+    tsFormat: 'yyyy-MM-dd',
+    text: 'Buy a full price meal.',
+    value: 500,
+  },
+  {
+    uuid: '026d69ff-f3a5-4a85-8619-20bc012b7ca5',
+    typeId: 2,
+    linkUUID: null,
+    timestamp: new Date(),
+    tsFormat: 'yyyy-MM-dd',
+    text: 'Buy a premium bottle.',
+    value: 1000,
+  },
+  {
+    uuid: 'e3a40a66-f1a5-4049-a2b2-6486a7207de2',
+    typeId: 2,
+    linkUUID: null,
+    timestamp: new Date(),
+    tsFormat: 'yyyy-MM-dd',
+    text: 'Cater an event.',
+    value: 5000,
+  },
 ];
+
+/* blank
+  {
+    uuid: '',
+    typeId: 0,
+    linkUUID: null,
+    timestamp: new Date(),
+    tsFormat: 'yyyy-MM-dd',
+    text: '',
+    value: 0,
+  },
+*/

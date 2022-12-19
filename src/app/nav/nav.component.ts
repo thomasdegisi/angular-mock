@@ -40,8 +40,8 @@ export class NavComponent {
           this.showCustomers();
           break;
       case 'get-points':
-//        this.showGetPoints();
-//        break;
+        this.showGetPoints();
+        break;
       case 'spend-points':
 //        this.showSpendPoints();
 //        break;

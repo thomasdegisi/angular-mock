@@ -20,7 +20,7 @@ $my-palette: mat.define-palette(mat.$deep-purple-palette);
   width: 100%;
 }
 
-$grow_sizes: (1, 2);
+$grow_sizes: (1, 2, 3);
 
 .grow {
   @each $size in $grow_sizes {
