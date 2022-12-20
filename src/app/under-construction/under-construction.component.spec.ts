@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UnderConstructionComponent } from './under-construction.component';
@@ -8,7 +9,8 @@ describe('UnderConstructionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UnderConstructionComponent ]
+      declarations: [ UnderConstructionComponent ],
+      schemas: [NO_ERRORS_SCHEMA],
     })
     .compileComponents();
 
