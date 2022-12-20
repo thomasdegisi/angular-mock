@@ -47,6 +47,24 @@ export const TRX_LIST: Trx[] = [
     value: 4, // Loyalty Transactions will have typeId: 4
   },
   {
+    uuid: 'd2e1a735-2b8e-4f4d-bbea-f71d5710f484',
+    typeId: 1,
+    linkUUID: null,
+    timestamp: new Date(2022, 11, 20, 12, 9, 0, 0),
+    tsFormat: 'yyyy-MM-dd',
+    text: 'Added DatePicker. UUIDs now read only in forms.',
+    value: 0,
+  },
+  {
+    uuid: 'd2e1a735-2b8e-4f4d-bbea-f71d5710f484',
+    typeId: 1,
+    linkUUID: null,
+    timestamp: new Date(2022, 11, 18, 22, 20, 0, 0),
+    tsFormat: 'yyyy-MM-dd',
+    text: 'Added navigation, Customers, two forms and Points.',
+    value: 0,
+  },
+  {
     uuid: 'b1c2e9f6-0ecd-4803-9686-4d6603ff6ac1',
     typeId: 1,
     linkUUID: null,
