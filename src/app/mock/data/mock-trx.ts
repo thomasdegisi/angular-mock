@@ -47,6 +47,15 @@ export const TRX_LIST: Trx[] = [
     value: 4, // Loyalty Transactions will have typeId: 4
   },
   {
+    uuid: '6237e5f6-9264-43a7-82ef-f8c72054f558',
+    typeId: 1,
+    linkUUID: null,
+    timestamp: new Date(2022, 11, 21, 22, 15, 0, 0),
+    tsFormat: 'yyyy-MM-dd',
+    text: 'Added observable data services.',
+    value: 0,
+  },
+  {
     uuid: 'd2e1a735-2b8e-4f4d-bbea-f71d5710f484',
     typeId: 1,
     linkUUID: null,

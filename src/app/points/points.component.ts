@@ -17,7 +17,7 @@ export class PointsComponent implements AfterViewInit, OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<Trx>;
   dataSource!: PointsDataSource;
-  data!: Trx[];
+  data: Trx[] = [];
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['desc', 'points'];
@@ -43,7 +43,8 @@ export class PointsComponent implements AfterViewInit, OnInit {
           break;
       }
 
-      this.data = this.trxService.getTrxList(trxTypeId);
+      this.trxService.getTrxList(trxTypeId)
+        .subscribe(trxList => this.data = trxList);
       this.dataSource = new PointsDataSource(this.data);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;

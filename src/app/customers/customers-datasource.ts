@@ -4,7 +4,6 @@ import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 import { Customer } from '../models/customer';
-import { CUSTOMER_LIST } from '../mock/data/mock-customers'
 
 /**
  * Data source for the Customers view. This class should
@@ -12,12 +11,16 @@ import { CUSTOMER_LIST } from '../mock/data/mock-customers'
  * (including sorting, pagination, and filtering).
  */
 export class CustomersDataSource extends DataSource<Customer> {
-  data: Customer[] = CUSTOMER_LIST;
+  data: Customer[] = [];
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
   constructor() {
     super();
+  }
+
+  setData(customers: Observable<Customer[]>) {
+    customers.subscribe(list => this.data = list);
   }
 
   /**
@@ -68,7 +71,7 @@ export class CustomersDataSource extends DataSource<Customer> {
 
     return data.sort((a, b) => {
       const isAsc = this.sort?.direction === 'asc';
-      switch (this.sort?.active) { 
+      switch (this.sort?.active) {
         case 'firstName': return compare(a.firstName!, b.firstName!, isAsc);
         case 'lastName': return compare(a.lastName!, b.lastName!, isAsc);
         case 'address': return compare(a.address!, b.address!, isAsc);

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { Trx } from 'src/app/models/trx';
 import { TRX_LIST } from 'src/app/mock/data/mock-trx';
 
@@ -6,11 +7,9 @@ import { TRX_LIST } from 'src/app/mock/data/mock-trx';
   providedIn: 'root'
 })
 export class MockTrxService {
-  private trxList: Trx[] = TRX_LIST;
-
   constructor() { }
 
-  getTrxList(typeId: number): Trx[] {
-    return this.trxList.filter((trx) => trx.typeId === typeId);
+  getTrxList(typeId: number): Observable<Trx[]> {
+    return of(TRX_LIST.filter((trx) => trx.typeId === typeId));
   }
 }
