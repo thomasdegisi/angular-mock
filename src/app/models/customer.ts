@@ -1,5 +1,5 @@
 export interface Customer {
-  uuid: string | null;
+  id: number;
   firstName: string | null;
   lastName: string | null;
   address: string | null;

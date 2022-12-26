@@ -6,18 +6,21 @@ import { Observable, of as observableOf, merge } from 'rxjs';
 import { Trx } from '../models/trx';
 
 /**
- * Data source for the GetPoints view. This class should
+ * Data source for the Points view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
 export class PointsDataSource extends DataSource<Trx> {
-  data: Trx[];
+  data: Trx[] = [];
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
-  constructor(_data: Trx[]) {
+  constructor() {
     super();
-    this.data = _data;
+  }
+
+  setData(trxList: Observable<Trx[]>) {
+    trxList.subscribe(list => this.data = list);
   }
 
   /**

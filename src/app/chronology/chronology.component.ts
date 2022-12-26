@@ -9,12 +9,28 @@ import { MockTrxService } from 'src/app/mock/services/mock-trx.service';
 })
 export class ChronologyComponent implements OnInit {
   events: Trx[] = [];
+  error = false;
+  errorMessage = '';
+  // Test error message
+  // errorMessage = '12345 67890 22345 67890 32345 67890 42345 67890 52345 67890 62345 67890 72345 67890 82345 67890 92345 67890';
 
   constructor(private trxService: MockTrxService) {
   }
 
+  clearError(): void {
+      this.error = false;
+      this.errorMessage = '';
+  }
+
   ngOnInit(): void {
-    this.trxService.getTrxList(CHRONOLOGY_EVENT_TYPE_ID)
-      .subscribe(trxList => this.events = trxList);
+    this.clearError();
+
+    try {
+      this.trxService.getTrxList(CHRONOLOGY_EVENT_TYPE_ID)
+        .subscribe(trxList => this.events = trxList);
+    } catch (exception: any) {
+      this.errorMessage = exception.toString();
+      this.error = true;
+    }
   }
 }

@@ -2,7 +2,7 @@ import { Customer } from 'src/app/models/customer';
 
 export const CUSTOMER_LIST: Customer[] = [
   {
-    uuid: '41feb1a7-0b7d-4896-9554-8b5328228ad2',
+    id: 1,
     firstName: 'Chili',
     lastName: 'Coney',
     address: '12090 Metcalf Ave',
@@ -12,7 +12,7 @@ export const CUSTOMER_LIST: Customer[] = [
     postalCode: '66213',
   },
   {
-    uuid: '33e29f67-ab87-4f55-9cd0-8179aaf6358c',
+    id: 2,
     firstName: 'Chicken',
     lastName: 'Slinger',
     address: '2321 E Markland Ave',
@@ -22,7 +22,7 @@ export const CUSTOMER_LIST: Customer[] = [
     postalCode: '46901',
   },
   {
-    uuid: 'b4ff17e3-970f-44d6-897b-a3cd15efa76b',
+    id: 3,
     firstName: 'Wacky',
     lastName: 'Pack',
     address: '861 Norland Ave',
@@ -32,7 +32,7 @@ export const CUSTOMER_LIST: Customer[] = [
     postalCode: '17201',
   },
   {
-    uuid: 'd91318a1-be68-4011-ade7-849380eaef33',
+    id: 4,
     firstName: 'Cherry',
     lastName: 'Limeade',
     address: '2050 S Arizona Ave',
@@ -42,7 +42,7 @@ export const CUSTOMER_LIST: Customer[] = [
     postalCode: '85286',
   },
   {
-    uuid: 'ce671d20-ab33-4890-849c-3e8d56d4d675',
+    id: 5,
     firstName: 'Mango',
     lastName: 'Slush',
     address: '1093 US-270',
@@ -55,7 +55,7 @@ export const CUSTOMER_LIST: Customer[] = [
 
 /* blank
   {
-    uuid: '',
+    id: 1,
     firstName: '',
     lastName: '',
     address: '',

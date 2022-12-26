@@ -9,7 +9,7 @@ import * as uuid from 'uuid';
 })
 export class ChronologyEventComponent {
   eventForm = this.fb.group({
-    uuid: [uuid.v4(), Validators.required],
+    id: [null, Validators.required],
     timestamp: [new Date(), Validators.required],
     tsFormat: ['yyyy-MM-dd', Validators.required],
     text: [null, Validators.required],

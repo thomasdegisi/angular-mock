@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import * as uuid from 'uuid';
 
 @Component({
   selector: 'app-customer-edit',
@@ -9,7 +8,7 @@ import * as uuid from 'uuid';
 })
 export class CustomerEditComponent {
   customerForm = this.fb.group({
-    uuid: [uuid.v4(), Validators.required],
+    id: [null, Validators.required],
     firstName: [null, Validators.required],
     lastName: [null, Validators.required],
     address: [null, Validators.required],

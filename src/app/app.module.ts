@@ -3,8 +3,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { DomSanitizer } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
@@ -26,6 +26,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrandComponent } from './brand/brand.component';
@@ -34,6 +36,7 @@ import { ChronologyEventComponent } from './chronology-event/chronology-event.co
 import { CustomerEditComponent } from './customer-edit/customer-edit.component';
 import { CustomersComponent } from './customers/customers.component';
 import { HomeComponent } from './home/home.component';
+import { InMemoryDataService } from 'src/app/mock/services/in-memory-data.service';
 import { NavComponent } from './nav/nav.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PointsComponent } from './points/points.component';
@@ -63,8 +66,11 @@ import { UuidGenComponent, UuidShowComponent } from './uuid-gen/uuid-gen.compone
     BrowserModule,
     ClipboardModule,
     FormsModule,
-    LayoutModule,
     HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    ),
+    LayoutModule,
     MatBottomSheetModule,
     MatButtonModule,
     MatCardModule,

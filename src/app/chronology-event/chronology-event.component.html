@@ -7,11 +7,7 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="UUID" formControlName="uuid" [readonly]="true">
-            <mat-hint>UUID cannot be changed.</mat-hint>
-            <mat-error *ngIf="eventForm.controls['uuid'].hasError('required')">
-              UUID is <strong>required</strong>
-            </mat-error>
+            <input matInput placeholder="ID" formControlName="id">
           </mat-form-field>
         </div>
       </div>

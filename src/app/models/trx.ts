@@ -1,7 +1,7 @@
 export interface Trx {
-  uuid: string;
+  id: number;
   typeId: number;
-  linkUUID: string | null;
+  linkId: number;
   timestamp: Date,
   tsFormat: string;
   text: string;
