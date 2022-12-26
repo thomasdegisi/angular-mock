@@ -46,31 +46,30 @@ export class PointsComponent implements AfterViewInit, OnInit {
   init(): void {
     this.clearError();
 
-    try {
       this.route.url.subscribe((url) => {
-        let trxTypeId: number = INVALID_TYPE_ID;
+        try {
+          let trxTypeId: number = INVALID_TYPE_ID;
 
-        switch (url.toString()) {
-          case 'get-points':
-            trxTypeId = GET_LOYALTY_TYPE_ID;
-            break;
-          case 'spend-points':
-            trxTypeId = SPEND_LOYALTY_TYPE_ID;
-            break;
-          default:
-            break;
-        }
+          switch (url.toString()) {
+            case 'get-points':
+              trxTypeId = GET_LOYALTY_TYPE_ID;
+              break;
+            case 'spend-points':
+              trxTypeId = SPEND_LOYALTY_TYPE_ID;
+              break;
+            default:
+              break;
+          }
 
-        this.dataSource = new PointsDataSource();
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-        this.table.dataSource = this.dataSource;
-        this.dataSource.setData(this.trxService.getTrxList(trxTypeId));
-      });
-    } catch (exception: any) {
-      window.alert('in catch');
-      this.showError(exception.toString());
-    }
+          this.dataSource = new PointsDataSource();
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator;
+          this.table.dataSource = this.dataSource;
+          this.dataSource.setData(this.trxService.getTrxList(trxTypeId));
+      } catch (exception: any) {
+        this.showError(exception.toString());
+      }
+    });
   }
 
   ngOnInit(): void {
