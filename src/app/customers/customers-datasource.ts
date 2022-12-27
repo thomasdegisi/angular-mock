@@ -1,5 +1,4 @@
 import { DataSource } from '@angular/cdk/collections';
-import { Injectable } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
@@ -12,9 +11,6 @@ import { CustomerService } from 'src/app/services/customer.service';
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-@Injectable({
-  providedIn: 'root'
-})
 export class CustomersDataSource extends DataSource<Customer> {
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;

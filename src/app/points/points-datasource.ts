@@ -1,9 +1,10 @@
 import { DataSource } from '@angular/cdk/collections';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
-import { Observable, of as observableOf, merge } from 'rxjs';
+import { Observable, merge, Subscription } from 'rxjs';
 import { Trx } from '../models/trx';
+import { TrxService } from '../services/trx.service';
 
 /**
  * Data source for the Points view. This class should
@@ -11,16 +12,12 @@ import { Trx } from '../models/trx';
  * (including sorting, pagination, and filtering).
  */
 export class PointsDataSource extends DataSource<Trx> {
-  data: Trx[] = [];
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
+  subscription: Subscription | null = null;
 
-  constructor() {
+  constructor(private trxService: TrxService, private typeId: number) {
     super();
-  }
-
-  setData(trxList: Observable<Trx[]>) {
-    trxList.subscribe(list => this.data = list);
   }
 
   /**
@@ -32,10 +29,12 @@ export class PointsDataSource extends DataSource<Trx> {
     if (this.paginator && this.sort) {
       // Combine everything that affects the rendered data into one update
       // stream for the data-table to consume.
-      return merge(observableOf(this.data), this.paginator.page, this.sort.sortChange)
-        .pipe(map(() => {
-          return this.getPagedData(this.getSortedData([...this.data ]));
+      let observable = merge(this.trxService.getTrxList(this.typeId), this.paginator.page, this.sort.sortChange)
+        .pipe(map((data) => {
+          return this.getPagedData(this.getSortedData(data));
         }));
+      this.subscription = observable.subscribe();
+      return observable;
     } else {
       throw Error('Please set the paginator and sort on the data source before connecting.');
     }
@@ -45,7 +44,11 @@ export class PointsDataSource extends DataSource<Trx> {
    *  Called when the table is being destroyed. Use this function, to clean up
    * any open connections or free any held resources that were set up during connect.
    */
-  disconnect(): void {}
+  disconnect(): void {
+    if (this.subscription != null) {
+      this.subscription.unsubscribe();
+    }
+  }
 
   /**
    * Paginate the data (client-side). If you're using server-side pagination,
@@ -64,19 +67,23 @@ export class PointsDataSource extends DataSource<Trx> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: Trx[]): Trx[] {
-    if (!this.sort || !this.sort.active || this.sort.direction === '') {
-      return data;
-    }
-
-    return data.sort((a, b) => {
-      const isAsc = this.sort?.direction === 'asc';
-      switch (this.sort?.active) {
-        case 'desc': return compare(a.text, b.text, isAsc);
-        case 'points': return compare(+a.value, +b.value, isAsc);
-        default: return 0;
+  private getSortedData(data: Trx[] | PageEvent | Sort): Trx[] {
+    if (Array.isArray(data)) {
+      if (!this.sort || !this.sort.active || this.sort.direction === '') {
+        return data;
       }
-    });
+
+      return data.sort((a, b) => {
+        const isAsc = this.sort?.direction === 'asc';
+        switch (this.sort?.active) {
+          case 'desc': return compare(a.text, b.text, isAsc);
+          case 'points': return compare(+a.value, +b.value, isAsc);
+          default: return 0;
+        }
+      });
+    } else {
+      return [];
+    }
   }
 }
 
