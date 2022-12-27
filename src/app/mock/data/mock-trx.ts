@@ -47,6 +47,15 @@ export const TRX_LIST: Trx[] = [
     value: 4, // Loyalty Transactions will have typeId: 4
   },
   {
+    id: 36,
+    typeId: 1,
+    linkId: 0,
+    timestamp: new Date(2022, 11, 26, 23, 36, 0, 0),
+    tsFormat: 'yyyy-MM-dd',
+    text: 'All data loaded via HTTP In Data Memory Service.',
+    value: 8000,
+  },
+  {
     id: 6,
     typeId: 1,
     linkId: 0,

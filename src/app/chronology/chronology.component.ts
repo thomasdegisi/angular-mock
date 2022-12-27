@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { CHRONOLOGY_EVENT_TYPE_ID, Trx } from 'src/app/models/trx';
 import { TrxService } from 'src/app/services/trx.service';
 
@@ -7,12 +8,13 @@ import { TrxService } from 'src/app/services/trx.service';
   templateUrl: './chronology.component.html',
   styleUrls: ['./chronology.component.scss'],
 })
-export class ChronologyComponent implements OnInit {
+export class ChronologyComponent implements OnDestroy, OnInit {
   events: Trx[] = [];
   error = false;
   errorMessage = '';
   // Test error message
   // errorMessage = '12345 67890 22345 67890 32345 67890 42345 67890 52345 67890 62345 67890 72345 67890 82345 67890 92345 67890';
+  subscription: Subscription | null = null;
 
   constructor(private trxService: TrxService) {
   }
@@ -26,11 +28,15 @@ export class ChronologyComponent implements OnInit {
     this.clearError();
 
     try {
-      this.trxService.getTrxList(CHRONOLOGY_EVENT_TYPE_ID)
+      this.subscription = this.trxService.getTrxList(CHRONOLOGY_EVENT_TYPE_ID)
         .subscribe(trxList => this.events = trxList);
     } catch (exception: any) {
       this.errorMessage = exception.toString();
       this.error = true;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }
