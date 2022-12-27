@@ -10,7 +10,7 @@ import { TRX_LIST } from '../data/mock-trx';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const customers = CUSTOMER_LIST;
-    const trxList = TRX_LIST;
-    return {customers: customers, trxList: trxList};
+    const trxes = TRX_LIST;
+    return {customers: customers, trxes: trxes};
   }
 }

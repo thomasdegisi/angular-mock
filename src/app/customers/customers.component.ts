@@ -4,7 +4,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { CustomersDataSource } from './customers-datasource';
 import { Customer } from '../models/customer';
-import { MockCustomersService } from '../mock/services/mock-customers.service';
 
 @Component({
   selector: 'app-customers',
@@ -15,7 +14,6 @@ export class CustomersComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<Customer>;
-  dataSource: CustomersDataSource;
   error = false;
   errorMessage = '';
   // Test error message
@@ -24,8 +22,7 @@ export class CustomersComponent implements AfterViewInit, OnInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['firstName', 'lastName', 'address', 'city', 'state', 'postalCode'];
 
-  constructor(private customersService: MockCustomersService) {
-    this.dataSource = new CustomersDataSource();
+  constructor(private dataSource: CustomersDataSource) {
   }
 
   clearError(): void {
@@ -40,7 +37,6 @@ export class CustomersComponent implements AfterViewInit, OnInit {
       this.table.dataSource = this.dataSource;
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-      this.dataSource.setData(this.customersService.getCustomers());
     } catch (exception: any) {
       this.errorMessage = exception.toString();
       this.error = true;

@@ -3,10 +3,13 @@ import { Observable, of } from 'rxjs';
 import { Customer } from '../../models/customer';
 import { CUSTOMER_LIST } from '../data/mock-customers';
 
+/**
+ * This unused, simpler service doesn't use the Http in-memory-data-service.
+ */
 @Injectable({
   providedIn: 'root'
 })
-export class MockCustomersService {
+export class CustomersService {
 
   constructor() {}
 

@@ -5,7 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { GET_LOYALTY_TYPE_ID, INVALID_TYPE_ID, SPEND_LOYALTY_TYPE_ID, Trx } from '../models/trx';
 import { PointsDataSource } from './points-datasource';
-import { MockTrxService } from 'src/app/mock/services/mock-trx.service';
+import { TrxService } from 'src/app/mock/services/mock-trx.service';
 
 @Component({
   selector: 'app-points',
@@ -28,7 +28,7 @@ export class PointsComponent implements AfterViewInit, OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private trxService: MockTrxService
+    private trxService: TrxService
   ) {
     this.dataSource = new PointsDataSource();
   }

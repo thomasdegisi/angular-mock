@@ -3,10 +3,13 @@ import { Observable, of } from 'rxjs';
 import { Trx } from 'src/app/models/trx';
 import { TRX_LIST } from 'src/app/mock/data/mock-trx';
 
+/**
+ * This unused, simpler service doesn't use the Http in-memory-data-service.
+ */
 @Injectable({
   providedIn: 'root'
 })
-export class MockTrxService {
+export class TrxService {
 
   constructor() { }
 

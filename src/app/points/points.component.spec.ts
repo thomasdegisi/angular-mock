@@ -1,10 +1,11 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PointsComponent } from './points.component';
 
@@ -16,10 +17,11 @@ describe('PointsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ PointsComponent ],
       imports: [
-        NoopAnimationsModule,
+        HttpClientTestingModule,
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
+        NoopAnimationsModule,
         RouterTestingModule,
       ],
       schemas: [NO_ERRORS_SCHEMA],

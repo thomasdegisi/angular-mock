@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MockTrxService } from './mock-trx.service';
+import { TrxService } from './mock-trx.service';
 
 describe('MockTrxService', () => {
-  let service: MockTrxService;
+  let service: TrxService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(MockTrxService);
+    service = TestBed.inject(TrxService);
   });
 
   it('should be created', () => {

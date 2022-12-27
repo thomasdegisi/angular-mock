@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CHRONOLOGY_EVENT_TYPE_ID, Trx } from 'src/app/models/trx';
-import { MockTrxService } from 'src/app/mock/services/mock-trx.service';
+import { TrxService } from 'src/app/services/trx.service';
 
 @Component({
   selector: 'app-chronology',
@@ -14,7 +14,7 @@ export class ChronologyComponent implements OnInit {
   // Test error message
   // errorMessage = '12345 67890 22345 67890 32345 67890 42345 67890 52345 67890 62345 67890 72345 67890 82345 67890 92345 67890';
 
-  constructor(private trxService: MockTrxService) {
+  constructor(private trxService: TrxService) {
   }
 
   clearError(): void {

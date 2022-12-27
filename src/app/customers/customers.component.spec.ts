@@ -1,9 +1,10 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CustomersComponent } from './customers.component';
 
@@ -15,10 +16,11 @@ describe('CustomersComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ CustomersComponent ],
       imports: [
-        NoopAnimationsModule,
+        HttpClientTestingModule,
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
+        NoopAnimationsModule,
       ],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
