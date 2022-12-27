@@ -1,19 +1,21 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { CustomersDataSource } from './customers-datasource';
 import { Customer } from '../models/customer';
+import { CustomersDataSource } from './customers-datasource';
+import { CustomerService } from 'src/app/services/customer.service';
 
 @Component({
   selector: 'app-customers',
   templateUrl: './customers.component.html',
   styleUrls: ['./customers.component.scss']
 })
-export class CustomersComponent implements AfterViewInit, OnInit {
+export class CustomersComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<Customer>;
+  dataSource!: CustomersDataSource;
   error = false;
   errorMessage = '';
   // Test error message
@@ -22,7 +24,7 @@ export class CustomersComponent implements AfterViewInit, OnInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['firstName', 'lastName', 'address', 'city', 'state', 'postalCode'];
 
-  constructor(private dataSource: CustomersDataSource) {
+  constructor(private customersService: CustomerService) {
   }
 
   clearError(): void {
@@ -34,17 +36,14 @@ export class CustomersComponent implements AfterViewInit, OnInit {
     this.clearError();
 
     try {
-      this.table.dataSource = this.dataSource;
+      this.dataSource = new CustomersDataSource(this.customersService);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
+      this.table.dataSource = this.dataSource;
     } catch (exception: any) {
       this.errorMessage = exception.toString();
       this.error = true;
     }
-  }
-
-  ngOnInit(): void {
-    this.init();
   }
 
   ngAfterViewInit(): void {
