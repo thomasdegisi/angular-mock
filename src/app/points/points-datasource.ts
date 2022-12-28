@@ -12,6 +12,7 @@ import { TrxService } from '../services/trx.service';
  * (including sorting, pagination, and filtering).
  */
 export class PointsDataSource extends DataSource<Trx> {
+  data: Trx[] = [];
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
   subscription: Subscription | null = null;
@@ -30,8 +31,9 @@ export class PointsDataSource extends DataSource<Trx> {
       // Combine everything that affects the rendered data into one update
       // stream for the data-table to consume.
       let observable = merge(this.trxService.getTrxList(this.typeId), this.paginator.page, this.sort.sortChange)
-        .pipe(map((data) => {
-          return this.getPagedData(this.getSortedData(data));
+        .pipe(map((_data) => {
+          this.data = this.getPagedData(this.getSortedData(_data));
+          return this.data;
         }));
       this.subscription = observable.subscribe();
       return observable;
@@ -54,12 +56,12 @@ export class PointsDataSource extends DataSource<Trx> {
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: Trx[]): Trx[] {
+  private getPagedData(_data: Trx[]): Trx[] {
     if (this.paginator) {
       const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-      return data.splice(startIndex, this.paginator.pageSize);
+      return _data.splice(startIndex, this.paginator.pageSize);
     } else {
-      return data;
+      return _data;
     }
   }
 
@@ -67,13 +69,13 @@ export class PointsDataSource extends DataSource<Trx> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: Trx[] | PageEvent | Sort): Trx[] {
-    if (Array.isArray(data)) {
+  private getSortedData(_data: Trx[] | PageEvent | Sort): Trx[] {
+    if (Array.isArray(_data)) {
       if (!this.sort || !this.sort.active || this.sort.direction === '') {
-        return data;
+        return _data;
       }
 
-      return data.sort((a, b) => {
+      return _data.sort((a, b) => {
         const isAsc = this.sort?.direction === 'asc';
         switch (this.sort?.active) {
           case 'desc': return compare(a.text, b.text, isAsc);
@@ -82,7 +84,7 @@ export class PointsDataSource extends DataSource<Trx> {
         }
       });
     } else {
-      return [];
+      return this.getSortedData(this.data);
     }
   }
 }
