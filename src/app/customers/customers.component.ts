@@ -5,6 +5,7 @@ import { MatTable } from '@angular/material/table';
 import { Customer } from '../models/customer';
 import { CustomersDataSource } from './customers-datasource';
 import { CustomerService } from 'src/app/services/customer.service';
+import { StatusComponent } from '../status/status.component';
 
 @Component({
   selector: 'app-customers',
@@ -15,11 +16,8 @@ export class CustomersComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<Customer>;
+  @ViewChild(StatusComponent) status!: StatusComponent;
   dataSource!: CustomersDataSource;
-  error = false;
-  errorMessage = '';
-  // Test error message
-  // errorMessage = '12345 67890 22345 67890 32345 67890 42345 67890 52345 67890 62345 67890 72345 67890 82345 67890 92345 67890';
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['firstName', 'lastName', 'address', 'city', 'state', 'postalCode'];
@@ -27,22 +25,26 @@ export class CustomersComponent implements AfterViewInit {
   constructor(private customersService: CustomerService) {
   }
 
-  clearError(): void {
-    this.error = false;
-    this.errorMessage = '';
+  deleteCustomer(id: number): void {
+    this.status.clear();
+    try {
+      this.customersService.deleteCustomer(id).subscribe(() => {
+        this.status.showStatus('Deleted customer with id(' + id + ').');
+      }).unsubscribe();
+    } catch (exception: any) {
+      this.status.showError(exception);
+    }
   }
 
   init(): void {
-    this.clearError();
-
     try {
       this.dataSource = new CustomersDataSource(this.customersService);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.table.dataSource = this.dataSource;
+      this.status.showStatus('Got customers.');
     } catch (exception: any) {
-      this.errorMessage = exception.toString();
-      this.error = true;
+      this.status.showError(exception);
     }
   }
 

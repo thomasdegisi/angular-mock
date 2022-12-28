@@ -1,18 +1,20 @@
+.chronology {
+  height: 100%;
+  flex-direction: row;
+}
+
 .chronology-list {
-  height: 90%;
+  height: 55%;
 }
 
 .chronology-viewport {
-  min-height: 80%;
-  width: 100%;
-}
-
-.chronology-content {
-  margin-left: 16px;
   height: 100%;
 }
 
-mat-error {
-  margin-left: 16px;
-  margin-right: 16px;
+.chronology-content {
+  height: 100%;
+}
+
+h1 {
+  padding-top: 16px;
 }

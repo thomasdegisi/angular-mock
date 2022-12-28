@@ -1,6 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CHRONOLOGY_EVENT_TYPE_ID, Trx } from 'src/app/models/trx';
+import { StatusComponent } from '../status/status.component';
 import { TrxService } from 'src/app/services/trx.service';
 
 @Component({
@@ -8,31 +9,24 @@ import { TrxService } from 'src/app/services/trx.service';
   templateUrl: './chronology.component.html',
   styleUrls: ['./chronology.component.scss'],
 })
-export class ChronologyComponent implements OnDestroy, OnInit {
+export class ChronologyComponent implements AfterViewInit, OnDestroy {
+  @ViewChild(StatusComponent) status!: StatusComponent;
   events: Trx[] = [];
-  error = false;
-  errorMessage = '';
-  // Test error message
-  // errorMessage = '12345 67890 22345 67890 32345 67890 42345 67890 52345 67890 62345 67890 72345 67890 82345 67890 92345 67890';
   subscription: Subscription | null = null;
 
   constructor(private trxService: TrxService) {
   }
 
-  clearError(): void {
-      this.error = false;
-      this.errorMessage = '';
-  }
-
-  ngOnInit(): void {
-    this.clearError();
-
+  ngAfterViewInit(): void {
     try {
       this.subscription = this.trxService.getTrxList(CHRONOLOGY_EVENT_TYPE_ID)
-        .subscribe(trxList => this.events = trxList);
+        .subscribe(trxList => {
+          this.status.clear();
+          this.events = trxList;
+          this.status.showStatus('Got events.');
+        });
     } catch (exception: any) {
-      this.errorMessage = exception.toString();
-      this.error = true;
+      this.status.showError(exception);
     }
   }
 

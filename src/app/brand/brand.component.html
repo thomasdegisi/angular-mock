@@ -1,1 +1,4 @@
-<span class="big-brand brand-color mat-elevation-z8">TD</span>
+<div *ngIf="(showBrand$ | async)">
+  <div class="height-16"></div>
+  <span class="big-brand brand-color mat-elevation-z8">TD</span>
+</div>

@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { GET_LOYALTY_TYPE_ID, INVALID_TYPE_ID, SPEND_LOYALTY_TYPE_ID, Trx } from '../models/trx';
 import { PointsDataSource } from './points-datasource';
+import { StatusComponent } from '../status/status.component';
 import { TrxService } from '../services/trx.service';
 
 @Component({
@@ -16,12 +17,9 @@ export class PointsComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<Trx>;
+  @ViewChild(StatusComponent) status!: StatusComponent;
   dataSource!: PointsDataSource;
   data: Trx[] = [];
-  error = false;
-  errorMessage = '';
-  // Test error message
-  // errorMessage = '12345 67890 22345 67890 32345 67890 42345 67890 52345 67890 62345 67890 72345 67890 82345 67890 92345 67890';
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['desc', 'points'];
@@ -31,40 +29,31 @@ export class PointsComponent implements AfterViewInit {
     private trxService: TrxService
   ) {}
 
-  clearError(): void {
-    this.error = false;
-    this.errorMessage = '';
-  }
-
-  showError(message: string) {
-    this.errorMessage = message;
-    this.error = true;
-  }
-
   init(): void {
-    this.clearError();
+    this.route.url.subscribe((url) => {
+      this.status.clear();
 
-      this.route.url.subscribe((url) => {
-        try {
-          let trxTypeId: number = INVALID_TYPE_ID;
+      try {
+        let trxTypeId: number = INVALID_TYPE_ID;
 
-          switch (url.toString()) {
-            case 'get-points':
-              trxTypeId = GET_LOYALTY_TYPE_ID;
-              break;
-            case 'spend-points':
-              trxTypeId = SPEND_LOYALTY_TYPE_ID;
-              break;
-            default:
-              break;
-          }
+        switch (url.toString()) {
+          case 'get-points':
+            trxTypeId = GET_LOYALTY_TYPE_ID;
+            break;
+          case 'spend-points':
+            trxTypeId = SPEND_LOYALTY_TYPE_ID;
+            break;
+          default:
+            break;
+        }
 
-          this.dataSource = new PointsDataSource(this.trxService, trxTypeId);
-          this.dataSource.sort = this.sort;
-          this.dataSource.paginator = this.paginator;
-          this.table.dataSource = this.dataSource;
+        this.dataSource = new PointsDataSource(this.trxService, trxTypeId);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+        this.table.dataSource = this.dataSource;
+        this.status.showStatus('Got points.');
       } catch (exception: any) {
-        this.showError(exception.toString());
+        this.status.showError(exception);
       }
     });
   }
