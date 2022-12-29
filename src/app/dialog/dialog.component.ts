@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dialog',
@@ -19,7 +20,7 @@ export class DialogComponent {
     _title: string,
     _body: string,
     _returnTrueLabel: string,
-    _returnFalseLabel: string = 'Cancel'): boolean
+    _returnFalseLabel: string = 'Cancel'): Observable<boolean>
   {
     const ref = this.dialog.open(DialogComponent);
     const component = ref.componentInstance;
@@ -31,8 +32,6 @@ export class DialogComponent {
     component.returnTrueLabel = _returnTrueLabel;
     component.returnFalseLabel = _returnFalseLabel;
 
-    ref.afterClosed().subscribe((_result) => result = _result).unsubscribe();
-
-    return result;
+    return ref.afterClosed();
   }
 }

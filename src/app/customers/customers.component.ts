@@ -32,16 +32,19 @@ export class CustomersComponent implements AfterViewInit {
   deleteCustomer(id: number): void {
     const idDisplay = ' customer with id(' + id + ')';
 
-    if (this.dialog.dialogResult('', 'Delete' + idDisplay + '?', 'Delete')) {
-      this.status.clear();
-      try {
-        this.customersService.deleteCustomer(id).subscribe(() => {
-          this.status.showStatus('Deleted' + idDisplay + '.');
-        }).unsubscribe();
-      } catch (exception: any) {
-        this.status.showError(exception);
+    this.dialog.dialogResult('', 'Delete' + idDisplay + '?', 'Delete').subscribe((deleteIt) => {
+      if (deleteIt) {
+        this.status.clear();
+        try {
+          this.customersService.deleteCustomer(id).subscribe(() => {
+            this.dataSource.data.filter((customer) => customer.id != id);
+            this.status.showStatus('Deleted' + idDisplay + '.');
+          });
+        } catch (exception: any) {
+          this.status.showError(exception);
+        }
       }
-    }
+    });
   }
 
   init(): void {
