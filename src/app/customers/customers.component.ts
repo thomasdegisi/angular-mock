@@ -20,36 +20,22 @@ export class CustomersComponent implements AfterViewInit {
   @ViewChild(MatTable) table!: MatTable<Customer>;
   @ViewChild(StatusComponent) status!: StatusComponent;
   dataSource!: CustomersDataSource;
-  dialog!: DialogComponent;
+  dialog!: DialogComponent<Customer>;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'firstName', 'lastName', 'address', 'city', 'state', 'postalCode', 'actions'];
 
-  constructor(private customersService: CustomerService, public _dialog: MatDialog) {
+  constructor(private dataService: CustomerService, public _dialog: MatDialog) {
     this.dialog = new DialogComponent(_dialog);
   }
 
-  deleteCustomer(id: number): void {
-    const idDisplay = ' customer with id(' + id + ')';
-
-    this.dialog.dialogResult('', 'Delete' + idDisplay + '?', 'Delete').subscribe((deleteIt) => {
-      if (deleteIt) {
-        this.status.clear();
-        try {
-          this.customersService.deleteCustomer(id).subscribe(() => {
-            this.dataSource.data.filter((customer) => customer.id != id);
-            this.status.showStatus('Deleted' + idDisplay + '.');
-          });
-        } catch (exception: any) {
-          this.status.showError(exception);
-        }
-      }
-    });
+  delete(id: number): void {
+    this.dialog.deleteDialog(id, this.status, this.dataService);
   }
 
   init(): void {
     try {
-      this.dataSource = new CustomersDataSource(this.customersService);
+      this.dataSource = new CustomersDataSource(this.dataService);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.table.dataSource = this.dataSource;

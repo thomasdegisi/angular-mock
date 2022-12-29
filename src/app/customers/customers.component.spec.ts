@@ -1,4 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
@@ -17,6 +18,7 @@ describe('CustomersComponent', () => {
       declarations: [ CustomersComponent ],
       imports: [
         HttpClientTestingModule,
+        MatDialogModule,
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,

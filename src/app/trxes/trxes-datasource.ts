@@ -7,11 +7,11 @@ import { Trx } from '../models/trx';
 import { TrxService } from '../services/trx.service';
 
 /**
- * Data source for the Points view. This class should
+ * Data source for the Trxes view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class PointsDataSource extends DataSource<Trx> {
+export class TrxesDataSource extends DataSource<Trx> {
   data: Trx[] = [];
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
@@ -30,7 +30,7 @@ export class PointsDataSource extends DataSource<Trx> {
     if (this.paginator && this.sort) {
       // Combine everything that affects the rendered data into one update
       // stream for the data-table to consume.
-      let observable = merge(this.trxService.getTrxList(this.typeId), this.paginator.page, this.sort.sortChange)
+      let observable = merge(this.trxService.getListByType(this.typeId), this.paginator.page, this.sort.sortChange)
         .pipe(map((_data) => {
           this.data = this.getPagedData(this.getSortedData(_data));
           return this.data;

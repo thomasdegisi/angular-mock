@@ -47,6 +47,15 @@ export const TRX_LIST: Trx[] = [
     value: 4, // Loyalty Transactions will have typeId: 4
   },
   {
+    id: 39,
+    typeId: 1,
+    linkId: 0,
+    timestamp: new Date(2022, 11, 29, 14, 6, 0, 0),
+    tsFormat: 'yyyy-MM-dd',
+    text: 'Added generic data service, events table, began implementing all delete.',
+    value: 0,
+  },
+  {
     id: 38,
     typeId: 1,
     linkId: 0,

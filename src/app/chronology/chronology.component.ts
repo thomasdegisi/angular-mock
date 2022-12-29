@@ -19,7 +19,7 @@ export class ChronologyComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     try {
-      this.subscription = this.trxService.getTrxList(CHRONOLOGY_EVENT_TYPE_ID)
+      this.subscription = this.trxService.getListByType(CHRONOLOGY_EVENT_TYPE_ID)
         .subscribe(trxList => {
           this.status.clear();
           this.events = trxList;

@@ -30,7 +30,7 @@ export class CustomersDataSource extends DataSource<Customer> {
     if (this.paginator && this.sort) {
       // Combine everything that affects the rendered data into one update
       // stream for the data-table to consume.
-      let observable = merge(this.customersService.getCustomers(), this.paginator.page, this.sort.sortChange)
+      let observable = merge(this.customersService.getList<Customer>(), this.paginator.page, this.sort.sortChange)
         .pipe(map((_data) => {
           this.data = this.getPagedData(this.getSortedData(_data));
           return this.data;

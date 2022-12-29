@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of, tap } from 'rxjs';
+import { DataService } from '../services/data.service';
+import { StatusComponent } from '../status/status.component';
 
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss']
 })
-export class DialogComponent {
+export class DialogComponent<T> {
   title: string = '';
   body: string = '';
   returnTrueLabel: string = '';
@@ -16,12 +18,11 @@ export class DialogComponent {
   constructor(public dialog: MatDialog) {
   }
 
-  public dialogResult(
+  dialogResult(
     _title: string,
     _body: string,
     _returnTrueLabel: string,
-    _returnFalseLabel: string = 'Cancel'): Observable<boolean>
-  {
+    _returnFalseLabel: string = 'Cancel'): Observable<boolean> {
     const ref = this.dialog.open(DialogComponent);
     const component = ref.componentInstance;
 
@@ -33,5 +34,22 @@ export class DialogComponent {
     component.returnFalseLabel = _returnFalseLabel;
 
     return ref.afterClosed();
+  }
+
+  deleteDialog<T>(id: number, status: StatusComponent, service: DataService<T>): void {
+    let idDisplay: string = service.idDisplay(id);
+
+    this.dialogResult('', 'Delete' + idDisplay + '?', 'Delete').subscribe((deleteIt) => {
+      if (deleteIt) {
+        status.clear();
+        service.delete(id).pipe(
+          tap(() => status.showStatus('Deleted ' + idDisplay + '.')),
+          catchError((err) => {
+            status.showError(err);
+            return of([]);
+          }),
+        ).subscribe();
+      }
+    });
   }
 }

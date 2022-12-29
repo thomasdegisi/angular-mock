@@ -41,9 +41,9 @@ import { HomeComponent } from './home/home.component';
 import { InMemoryDataService } from 'src/app/mock/services/in-memory-data.service';
 import { NavComponent } from './nav/nav.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PointsComponent } from './points/points.component';
 import { QuickLinksComponent } from './quick-links/quick-links.component';
 import { StatusComponent } from './status/status.component';
+import { TrxesComponent } from './trxes/trxes.component';
 import { UnderConstructionComponent } from './under-construction/under-construction.component';
 import { UuidGenComponent, UuidShowComponent } from './uuid-gen/uuid-gen.component';
 
@@ -59,9 +59,9 @@ import { UuidGenComponent, UuidShowComponent } from './uuid-gen/uuid-gen.compone
     HomeComponent,
     NavComponent,
     PageNotFoundComponent,
-    PointsComponent,
     QuickLinksComponent,
     StatusComponent,
+    TrxesComponent,
     UnderConstructionComponent,
     UuidGenComponent,
     UuidShowComponent,

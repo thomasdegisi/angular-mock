@@ -1,4 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
@@ -7,17 +8,18 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PointsComponent } from './points.component';
+import { TrxesComponent } from './trxes.component';
 
-describe('PointsComponent', () => {
-  let component: PointsComponent;
-  let fixture: ComponentFixture<PointsComponent>;
+describe('TrxesComponent', () => {
+  let component: TrxesComponent;
+  let fixture: ComponentFixture<TrxesComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PointsComponent ],
+      declarations: [ TrxesComponent ],
       imports: [
         HttpClientTestingModule,
+        MatDialogModule,
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
@@ -29,7 +31,7 @@ describe('PointsComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PointsComponent);
+    fixture = TestBed.createComponent(TrxesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

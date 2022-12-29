@@ -5,6 +5,26 @@
       <td mat-cell *matCellDef="let row">{{row.id}}</td>
     </ng-container>
 
+    <ng-container matColumnDef="typeId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Type ID</th>
+      <td mat-cell *matCellDef="let row">{{row.typeId}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="linkId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Link ID</th>
+      <td mat-cell *matCellDef="let row">{{row.linkId}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="timestamp">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Timestamp</th>
+      <td mat-cell *matCellDef="let row">{{row.timestamp | date : 'YYYY-MM-DD HH:mm:ss'}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="tsFormat">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Timestamp Format</th>
+      <td mat-cell *matCellDef="let row">{{row.tsFormat}}</td>
+    </ng-container>
+
     <ng-container matColumnDef="desc">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
       <td mat-cell *matCellDef="let row">{{row.text}}</td>
@@ -19,7 +39,7 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
       <td mat-cell *matCellDef="let row">
         <a class="edit-button" href="/under"><mat-icon>edit</mat-icon></a>
-        <a class="del-button" href="/under"><mat-icon>remove_circle_outline</mat-icon></a>
+        <a class="del-button" (click)="delete(row.id)"><mat-icon>remove_circle_outline</mat-icon></a>
       </td>
     </ng-container>
 
