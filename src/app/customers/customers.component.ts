@@ -1,10 +1,12 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { Customer } from '../models/customer';
 import { CustomersDataSource } from './customers-datasource';
 import { CustomerService } from 'src/app/services/customer.service';
+import { DialogComponent } from '../dialog/dialog.component';
 import { StatusComponent } from '../status/status.component';
 
 @Component({
@@ -18,21 +20,27 @@ export class CustomersComponent implements AfterViewInit {
   @ViewChild(MatTable) table!: MatTable<Customer>;
   @ViewChild(StatusComponent) status!: StatusComponent;
   dataSource!: CustomersDataSource;
+  dialog!: DialogComponent;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['firstName', 'lastName', 'address', 'city', 'state', 'postalCode'];
+  displayedColumns = ['id', 'firstName', 'lastName', 'address', 'city', 'state', 'postalCode', 'actions'];
 
-  constructor(private customersService: CustomerService) {
+  constructor(private customersService: CustomerService, public _dialog: MatDialog) {
+    this.dialog = new DialogComponent(_dialog);
   }
 
   deleteCustomer(id: number): void {
-    this.status.clear();
-    try {
-      this.customersService.deleteCustomer(id).subscribe(() => {
-        this.status.showStatus('Deleted customer with id(' + id + ').');
-      }).unsubscribe();
-    } catch (exception: any) {
-      this.status.showError(exception);
+    const idDisplay = ' customer with id(' + id + ')';
+
+    if (this.dialog.dialogResult('', 'Delete' + idDisplay + '?', 'Delete')) {
+      this.status.clear();
+      try {
+        this.customersService.deleteCustomer(id).subscribe(() => {
+          this.status.showStatus('Deleted' + idDisplay + '.');
+        }).unsubscribe();
+      } catch (exception: any) {
+        this.status.showError(exception);
+      }
     }
   }
 

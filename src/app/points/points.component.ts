@@ -22,12 +22,23 @@ export class PointsComponent implements AfterViewInit {
   data: Trx[] = [];
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['desc', 'points'];
+  displayedColumns = ['id', 'desc', 'points', 'actions'];
 
   constructor(
     private route: ActivatedRoute,
     private trxService: TrxService
   ) {}
+
+  deletePoints(id: number): void {
+    this.status.clear();
+    try {
+      this.trxService.deleteTrx(id).subscribe(() => {
+        this.status.showStatus('Deleted points transaction model with id(' + id + ').');
+      }).unsubscribe();
+    } catch (exception: any) {
+      this.status.showError(exception);
+    }
+  }
 
   init(): void {
     this.route.url.subscribe((url) => {

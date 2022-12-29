@@ -15,12 +15,16 @@ export class TrxService {
 
   constructor(private http: HttpClient) {}
 
-  /** POST: add a new transaction to the server */
   addTrx(trx: Trx): Observable<Trx> {
     return this.http.post<Trx>(this.trxesUrl, trx, this.httpOptions);
   }
 
-  /** GET transactions from the server */
+  deleteTrx(id: number): Observable<Trx>  {
+    const url = `${this.trxesUrl}/${id}`;
+
+    return this.http.delete<Trx>(url, this.httpOptions);
+  }
+
   getTrxList(typeId: number): Observable<Trx[]> {
     // To test upstream error display uncomment the below.
     // throw new Error('12345 67890 22345 67890 32345 67890 42345 67890 52345 67890 62345 67890 72345 67890 82345 67890 92345 67890');

@@ -2,9 +2,23 @@
 @include mat.core();
 
 $my-palette: mat.define-palette(mat.$deep-purple-palette);
+$my-button: mat.get-color-from-palette($my-palette, 'A200');
 
 .add-button {
+  justify-items: center;
   margin: 8px 16px 8px;
+  color: $my-button;
+}
+
+.del-button {
+  text-align: center;
+  margin-left: 8px;
+  color: $my-button;
+}
+
+.edit-button {
+  text-align: center;
+  color: $my-button;
 }
 
 .brand-color {

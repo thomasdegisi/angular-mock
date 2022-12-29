@@ -9,6 +9,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
@@ -35,6 +36,7 @@ import { ChronologyComponent } from './chronology/chronology.component';
 import { ChronologyEventComponent } from './chronology-event/chronology-event.component';
 import { CustomerEditComponent } from './customer-edit/customer-edit.component';
 import { CustomersComponent } from './customers/customers.component';
+import { DialogComponent } from './dialog/dialog.component';
 import { HomeComponent } from './home/home.component';
 import { InMemoryDataService } from 'src/app/mock/services/in-memory-data.service';
 import { NavComponent } from './nav/nav.component';
@@ -53,6 +55,7 @@ import { UuidGenComponent, UuidShowComponent } from './uuid-gen/uuid-gen.compone
     ChronologyEventComponent,
     CustomerEditComponent,
     CustomersComponent,
+    DialogComponent,
     HomeComponent,
     NavComponent,
     PageNotFoundComponent,
@@ -76,6 +79,7 @@ import { UuidGenComponent, UuidShowComponent } from './uuid-gen/uuid-gen.compone
     MatBottomSheetModule,
     MatButtonModule,
     MatCardModule,
+    MatDialogModule,
     MatDatepickerModule,
     MatDividerModule,
     MatIconModule,

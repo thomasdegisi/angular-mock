@@ -47,6 +47,15 @@ export const TRX_LIST: Trx[] = [
     value: 4, // Loyalty Transactions will have typeId: 4
   },
   {
+    id: 38,
+    typeId: 1,
+    linkId: 0,
+    timestamp: new Date(2022, 11, 28, 22, 17, 0, 0),
+    tsFormat: 'yyyy-MM-dd',
+    text: 'Added edit buttons, dialog component, began implementing customer delete.',
+    value: 0,
+  },
+  {
     id: 37,
     typeId: 1,
     linkId: 0,
