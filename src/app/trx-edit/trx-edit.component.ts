@@ -9,9 +9,12 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class TrxEditComponent {
   trxEdit = this.fb.group({
     id: [null, Validators.required],
+    typeId: [0, Validators.required],
+    linkId: [0, Validators.required],
     timestamp: [new Date(), Validators.required],
     tsFormat: ['yyyy-MM-dd', Validators.required],
     text: [null, Validators.required],
+    value: [0, Validators.required],
   });
 
   constructor(private fb: FormBuilder) {}

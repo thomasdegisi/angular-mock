@@ -10,7 +10,7 @@ export class CustomerService extends DataService<Customer> {
   constructor(private _http: HttpClient) {
     super();
     this.name = 'customer';
-    this.url = 'api/' + this.name;
+    this.url = 'api/customers';
     this.http = _http;
   }
 }

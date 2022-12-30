@@ -47,6 +47,15 @@ export const TRX_LIST: Trx[] = [
     value: 4, // Loyalty Transactions will have typeId: 4
   },
   {
+    id: 40,
+    typeId: 1,
+    linkId: 0,
+    timestamp: new Date(2022, 11, 30, 0, 9, 0, 0),
+    tsFormat: 'yyyy-MM-dd',
+    text: 'All fields in trx-edit, all buttons hooked up.',
+    value: 0,
+  },
+  {
     id: 39,
     typeId: 1,
     linkId: 0,

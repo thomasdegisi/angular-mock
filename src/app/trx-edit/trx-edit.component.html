@@ -7,7 +7,26 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="ID" formControlName="id">
+            <mat-label>ID</mat-label>
+            <input matInput placeholder="ID" type="number" formControlName="id">
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Type ID</mat-label>
+            <input matInput placeholder="Type ID" type="number" formControlName="typeId">
+            <mat-error *ngIf="trxEdit.controls['typeId'].hasError('required')">
+              Type ID is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Link ID</mat-label>
+            <input matInput placeholder="Link ID" type="number" formControlName="linkId">
+            <mat-error *ngIf="trxEdit.controls['linkId'].hasError('required')">
+              Link ID is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -26,9 +45,19 @@
         </div>
         <div class="col">
           <mat-form-field class="full-width">
+            <mat-label>Timestamp Format</mat-label>
             <input matInput placeholder="Timestamp Format" formControlName="tsFormat">
             <mat-error *ngIf="trxEdit.controls['tsFormat'].hasError('required')">
               Timestamp Format is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Value</mat-label>
+            <input matInput placeholder="Value" type="number" formControlName="value">
+            <mat-error *ngIf="trxEdit.controls['value'].hasError('required')">
+              Value is <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </div>
@@ -36,6 +65,7 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
+            <mat-label>Text</mat-label>
             <textarea matInput placeholder="Text" formControlName="text"></textarea>
             <mat-error *ngIf="trxEdit.controls['text'].hasError('required')">
               Text is <strong>required</strong>
