@@ -1,4 +1,11 @@
-import { Trx } from 'src/app/models/trx';
+import {
+  TYPE_TYPE_ID,
+  CHRONOLOGY_EVENT_TYPE_ID,
+  GET_LOYALTY_TYPE_ID,
+  SPEND_LOYALTY_TYPE_ID,
+  LOYALTY_TRX_TYPE_ID,
+  Trx,
+} from 'src/app/models/trx';
 
 export const TRX_LIST: Trx[] = [
   {
@@ -8,7 +15,7 @@ export const TRX_LIST: Trx[] = [
     timestamp: new Date(2022, 11, 16, 21, 0, 0, 0),
     tsFormat: 'yyyy-MM-dd',
     text: 'Type',
-    value: 0, // Types (like this one) will have typeId: 0
+    value: TYPE_TYPE_ID, // Types (like this one) will have typeId: 0
   },
   {
     id: 2,
@@ -17,7 +24,7 @@ export const TRX_LIST: Trx[] = [
     timestamp: new Date(2022, 11, 16, 21, 0, 0, 0),
     text: 'Chronology Event',
     tsFormat: 'yyyy-MM-dd',
-    value: 1, // Chronology Events will have typeId: 1
+    value: CHRONOLOGY_EVENT_TYPE_ID, // Chronology Events will have typeId: 1
   },
   {
     id: 3,
@@ -26,7 +33,7 @@ export const TRX_LIST: Trx[] = [
     timestamp: new Date(2022, 11, 18, 19, 51, 0, 0),
     tsFormat: 'yyyy-MM-dd',
     text: 'Get Loyalty',
-    value: 2, // Get Loyalty will have typeId: 2
+    value: GET_LOYALTY_TYPE_ID, // Get Loyalty will have typeId: 2
   },
   {
     id: 4,
@@ -35,7 +42,7 @@ export const TRX_LIST: Trx[] = [
     timestamp: new Date(2022, 11, 18, 19, 51, 0, 0),
     tsFormat: 'yyyy-MM-dd',
     text: 'Spend Loyalty',
-    value: 3, // Spend Loyalty will have typeId: 3
+    value: SPEND_LOYALTY_TYPE_ID, // Spend Loyalty will have typeId: 3
   },
   {
     id: 5,
@@ -44,7 +51,7 @@ export const TRX_LIST: Trx[] = [
     timestamp: new Date(2022, 11, 16, 21, 0, 0, 0),
     text: 'Loyalty Transaction',
     tsFormat: 'yyyy-MM-dd',
-    value: 4, // Loyalty Transactions will have typeId: 4
+    value: LOYALTY_TRX_TYPE_ID, // Loyalty Transactions will have typeId: 4
   },
   {
     id: 40,

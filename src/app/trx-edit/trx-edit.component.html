@@ -8,13 +8,13 @@
         <div class="col">
           <mat-form-field class="full-width">
             <mat-label>ID</mat-label>
-            <input matInput placeholder="ID" type="number" formControlName="id">
+            <input matInput placeholder="ID" type="number" min="0" formControlName="id">
           </mat-form-field>
         </div>
         <div class="col">
           <mat-form-field class="full-width">
             <mat-label>Type ID</mat-label>
-            <input matInput placeholder="Type ID" type="number" formControlName="typeId">
+            <input matInput placeholder="Type ID" type="number" min="{{minTypeId}}" max="{{maxTypeId}}" formControlName="typeId">
             <mat-error *ngIf="trxEdit.controls['typeId'].hasError('required')">
               Type ID is <strong>required</strong>
             </mat-error>
@@ -23,7 +23,7 @@
         <div class="col">
           <mat-form-field class="full-width">
             <mat-label>Link ID</mat-label>
-            <input matInput placeholder="Link ID" type="number" formControlName="linkId">
+            <input matInput placeholder="Link ID" type="number" min="0" formControlName="linkId">
             <mat-error *ngIf="trxEdit.controls['linkId'].hasError('required')">
               Link ID is <strong>required</strong>
             </mat-error>
