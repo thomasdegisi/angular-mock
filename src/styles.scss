@@ -34,12 +34,22 @@ $my-button: mat.get-color-from-palette($my-palette, 'A200');
   width: 100%;
 }
 
-$grow_sizes: (1, 2, 3);
+.full-height {
+  width: 100%;
+}
+
+$sizes: (1, 2, 3);
 
 .grow {
-  @each $size in $grow_sizes {
+  @each $size in $sizes {
     &_#{$size} {
       flex-grow: $size;
     }
   }
+}
+
+body, html {
+  height: 100%;
+  margin: 0px;
+  overflow-y: hidden;
 }

@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import {
+  ALL_TYPES_TYPE_ID,
   CHRONOLOGY_EVENT_TYPE_ID,
   GET_LOYALTY_TYPE_ID,
   INVALID_TYPE_ID,
@@ -46,7 +47,7 @@ export class TrxesComponent implements AfterViewInit {
   init(): void {
     this.route.url.subscribe((url) => {
       this.status.clear();
-      this.displayedColumns = ['id', 'desc', 'points', 'actions'];
+      this.displayedColumns = ['id', 'desc', 'value', 'actions'];
 
       try {
         let trxTypeId: number = INVALID_TYPE_ID;
@@ -61,6 +62,10 @@ export class TrxesComponent implements AfterViewInit {
             break;
           case 'spend-points':
             trxTypeId = SPEND_LOYALTY_TYPE_ID;
+            break;
+          case 'trxes':
+            trxTypeId = ALL_TYPES_TYPE_ID;
+            this.displayedColumns = ['id', 'typeId', 'linkId', 'timestamp', 'tsFormat', 'desc', 'value', 'actions'];
             break;
           default:
             break;

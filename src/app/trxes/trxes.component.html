@@ -1,5 +1,5 @@
 <div class="mat-elevation-z8">
-  <table mat-table matSort aria-label="Loyalty Points">
+  <table mat-table matSort aria-label="Transactions">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
       <td mat-cell *matCellDef="let row">{{row.id}}</td>
@@ -30,15 +30,15 @@
       <td mat-cell *matCellDef="let row">{{row.text}}</td>
     </ng-container>
 
-    <ng-container matColumnDef="points">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Points</th>
+    <ng-container matColumnDef="value">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Value</th>
       <td mat-cell *matCellDef="let row">{{row.value}}</td>
     </ng-container>
 
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
       <td mat-cell *matCellDef="let row">
-        <a class="edit-button" href="/trx-edit"><mat-icon>edit</mat-icon></a>
+        <a class="edit-button" href="/trx/{{row.id}}"><mat-icon>edit</mat-icon></a>
         <a class="del-button" (click)="delete(row.id)"><mat-icon>remove_circle_outline</mat-icon></a>
       </td>
     </ng-container>
@@ -55,6 +55,12 @@
       aria-label="Select page">
   </mat-paginator>
 
-  <app-status></app-status>
-  <a class="add-button" href="/trx-edit"><mat-icon>add_circle_outline</mat-icon></a>
+  <mat-divider></mat-divider>
+  <table>
+    <tr>
+      <td><a class="add-button" href="trx/0"><mat-icon>add_circle_outline</mat-icon></a></td>
+      <td><app-status class="grow_1"></app-status></td>
+    </tr>
+  </table>
+  <router-outlet></router-outlet>
 </div>

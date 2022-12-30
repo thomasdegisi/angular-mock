@@ -12,31 +12,27 @@
   <button
     type="button"
     mat-icon-button
-    routerLink="/" (click)="showHome()">
+    routerLink="/home">
     <mat-icon aria-label="Home page">home</mat-icon>
   </button>
 </mat-toolbar>
 
-<mat-sidenav-container class="sidenav-container" hasBackdrop="false">
-  <mat-sidenav #drawer class="sidenav mat-elevation-z8"
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="'side'"
-      [opened]="(isHandset$ | async) === false">
-    <mat-nav-list>
-      <a mat-list-item routerLink="/customers" (click)="showCustomers()">Customers</a>
-      <a mat-list-item routerLink="/events" (click)="showTrxes()">Events Table</a>
-      <a mat-list-item routerLink="/get-points" (click)="showTrxes()">Getting Loyalty Points</a>
-      <a mat-list-item routerLink="/spend-points" (click)="showTrxes()">Spending Loyalty Points</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content class="sidenav-content">
-    <app-customer-edit *ngIf="customerEditActive"></app-customer-edit>
-    <app-customers *ngIf="customersActive"></app-customers>
-    <app-home *ngIf="homeActive"></app-home>
-    <app-trx-edit *ngIf="trxEditActive"></app-trx-edit>
-    <app-trxes *ngIf="trxesActive"></app-trxes>
-    <app-page-not-found *ngIf="notFoundActive"></app-page-not-found>
-    <app-under-construction *ngIf="underConstructionActive"></app-under-construction>
-  </mat-sidenav-content>
-</mat-sidenav-container>
-<router-outlet></router-outlet>
+<div class="sidenav-div">
+  <mat-sidenav-container class="sidenav-container" hasBackdrop="false">
+    <mat-sidenav #drawer
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="'side'"
+        [opened]="(isHandset$ | async) === false">
+      <mat-nav-list>
+        <a mat-list-item routerLink="/customers">Customers</a>
+        <a mat-list-item routerLink="/events">Events</a>
+        <a mat-list-item routerLink="/get-points">Getting Loyalty Points</a>
+        <a mat-list-item routerLink="/spend-points">Spending Loyalty Points</a>
+        <a mat-list-item routerLink="/trxes">All Transactions</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

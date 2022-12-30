@@ -110,25 +110,25 @@ export class AppModule {
     this.matIconRegistry.addSvgIcon(
       'angular',
       this.domSanitizer.bypassSecurityTrustResourceUrl(
-        '../assets/icons/angular.svg'
+        'assets/icons/angular.svg'
       )
     );
     this.matIconRegistry.addSvgIcon(
       'github',
       this.domSanitizer.bypassSecurityTrustResourceUrl(
-        '../assets/icons/github.svg'
+        'assets/icons/github.svg'
       )
     );
     this.matIconRegistry.addSvgIcon(
       'linked-in',
       this.domSanitizer.bypassSecurityTrustResourceUrl(
-        '../assets/icons/linked-in.svg'
+        'assets/icons/linked-in.svg'
       )
     );
     this.matIconRegistry.addSvgIcon(
       'material',
       this.domSanitizer.bypassSecurityTrustResourceUrl(
-        '../assets/icons/material.svg'
+        'assets/icons/material.svg'
       )
     );
   }

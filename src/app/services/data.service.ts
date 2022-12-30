@@ -17,14 +17,20 @@ export class DataService<T> {
   constructor() {
   }
 
-  add<T>(trx: T): Observable<T> {
-    return this.http.post<T>(this.url, trx, this.httpOptions);
+  add<T>(item: T): Observable<T> {
+    return this.http.post<T>(this.url, item, this.httpOptions);
   }
 
   delete<T>(id: number): Observable<T>  {
     const url = `${this.url}/${id}`;
 
     return this.http.delete<T>(url, this.httpOptions);
+  }
+
+  getById<T>(id: number): Observable<T> {
+    const _url = this.url + '/' + id;
+
+    return this.http.get<T>(this.url);
   }
 
   getList<T>(): Observable<T[]> {
@@ -35,5 +41,9 @@ export class DataService<T> {
 
   idDisplay(id: number): string {
     return ' ' + this.name + ' with id(' + id + ')';
+  }
+
+  update<T>(item: T): Observable<T> {
+    return this.http.put<T>(this.url, item, this.httpOptions);
   }
 }

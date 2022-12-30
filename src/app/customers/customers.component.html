@@ -38,7 +38,7 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
       <td mat-cell *matCellDef="let row">
-        <a class="edit-button" href="/customer-edit"><mat-icon>edit</mat-icon></a>
+        <a class="edit-button" href="/customer/{{row.id}}"><mat-icon>edit</mat-icon></a>
         <a class="del-button" (click)="delete(row.id)"><mat-icon>remove_circle_outline</mat-icon></a>
       </td>
     </ng-container>
@@ -55,6 +55,11 @@
       aria-label="Select page">
   </mat-paginator>
 
-  <app-status></app-status>
-  <a class="add-button" href="/customer-edit"><mat-icon>add_circle_outline</mat-icon></a>
+  <mat-divider></mat-divider>
+  <table>
+    <tr>
+      <td><a class="add-button" href="customer/0"><mat-icon>add_circle_outline</mat-icon></a></td>
+      <td><app-status class="grow_1"></app-status></td>
+    </tr>
+  </table>
 </div>

@@ -1,14 +1,24 @@
+.sidenav-div {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  height: 100%;
+}
+
 .sidenav-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   height: 100%;
 }
 
 .sidenav {
-  background: inherit;
-  height: 50%;
+  height: 100%;
 }
 
 .sidenav-content {
-  min-height: 560px;
+  height: 100%;
+  margin-left: 16px;
 }
 
 .spacer {
@@ -18,5 +28,4 @@
 .mat-toolbar.mat-primary {
   position: sticky;
   top: 0;
-  z-index: 1;
 }

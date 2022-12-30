@@ -1,11 +1,8 @@
 <div class="status-margins">
-  <mat-divider></mat-divider>
   <div *ngIf=(errorMessage)>
     <mat-error>{{ errorMessage }}</mat-error>
-    <mat-divider></mat-divider>
   </div>
   <div *ngIf=(statusMessage) class="mat-small">
     <span>{{ statusMessage }}</span>
-    <mat-divider></mat-divider>
   </div>
 </div>

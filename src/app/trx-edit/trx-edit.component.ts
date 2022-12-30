@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { LOYALTY_TRX_TYPE_ID, TYPE_TYPE_ID } from '../models/trx';
+import { MAX_TRX_TYPE_ID, TYPE_TYPE_ID } from '../models/trx';
 
 @Component({
   selector: 'app-trx-edit',
@@ -9,7 +9,7 @@ import { LOYALTY_TRX_TYPE_ID, TYPE_TYPE_ID } from '../models/trx';
 })
 export class TrxEditComponent {
   minTypeId = TYPE_TYPE_ID;
-  maxTypeId = LOYALTY_TRX_TYPE_ID;
+  maxTypeId = MAX_TRX_TYPE_ID;
   trxEdit = this.fb.group({
     id: [null, Validators.required],
     typeId: [0, Validators.required],
