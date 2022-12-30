@@ -1,7 +1,7 @@
-<form [formGroup]="eventForm" novalidate (ngSubmit)="onSubmit()">
-  <mat-card class="chronology-event-card">
+<form [formGroup]="trxEdit" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="trx-edit-card">
     <mat-card-header>
-      <mat-card-title>Chronology Event</mat-card-title>
+      <mat-card-title>Transaction</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div class="row">
@@ -19,7 +19,7 @@
             <mat-hint>MM-DD-YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="eventForm.controls['timestamp'].hasError('required')">
+            <mat-error *ngIf="trxEdit.controls['timestamp'].hasError('required')">
               Timestamp is <strong>required</strong>
             </mat-error>
           </mat-form-field>
@@ -27,7 +27,7 @@
         <div class="col">
           <mat-form-field class="full-width">
             <input matInput placeholder="Timestamp Format" formControlName="tsFormat">
-            <mat-error *ngIf="eventForm.controls['tsFormat'].hasError('required')">
+            <mat-error *ngIf="trxEdit.controls['tsFormat'].hasError('required')">
               Timestamp Format is <strong>required</strong>
             </mat-error>
           </mat-form-field>
@@ -37,7 +37,7 @@
         <div class="col">
           <mat-form-field class="full-width">
             <textarea matInput placeholder="Text" formControlName="text"></textarea>
-            <mat-error *ngIf="eventForm.controls['text'].hasError('required')">
+            <mat-error *ngIf="trxEdit.controls['text'].hasError('required')">
               Text is <strong>required</strong>
             </mat-error>
           </mat-form-field>

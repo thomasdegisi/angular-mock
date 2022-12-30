@@ -33,7 +33,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrandComponent } from './brand/brand.component';
 import { ChronologyComponent } from './chronology/chronology.component';
-import { ChronologyEventComponent } from './chronology-event/chronology-event.component';
 import { CustomerEditComponent } from './customer-edit/customer-edit.component';
 import { CustomersComponent } from './customers/customers.component';
 import { DialogComponent } from './dialog/dialog.component';
@@ -43,6 +42,7 @@ import { NavComponent } from './nav/nav.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { QuickLinksComponent } from './quick-links/quick-links.component';
 import { StatusComponent } from './status/status.component';
+import { TrxEditComponent } from './trx-edit/trx-edit.component';
 import { TrxesComponent } from './trxes/trxes.component';
 import { UnderConstructionComponent } from './under-construction/under-construction.component';
 import { UuidGenComponent, UuidShowComponent } from './uuid-gen/uuid-gen.component';
@@ -52,7 +52,6 @@ import { UuidGenComponent, UuidShowComponent } from './uuid-gen/uuid-gen.compone
     AppComponent,
     BrandComponent,
     ChronologyComponent,
-    ChronologyEventComponent,
     CustomerEditComponent,
     CustomersComponent,
     DialogComponent,
@@ -61,6 +60,7 @@ import { UuidGenComponent, UuidShowComponent } from './uuid-gen/uuid-gen.compone
     PageNotFoundComponent,
     QuickLinksComponent,
     StatusComponent,
+    TrxEditComponent,
     TrxesComponent,
     UnderConstructionComponent,
     UuidGenComponent,

@@ -8,15 +8,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 
-import { ChronologyEventComponent } from './chronology-event.component';
+import { TrxEditComponent } from './trx-edit.component';
 
-describe('ChronologyEventComponent', () => {
-  let component: ChronologyEventComponent;
-  let fixture: ComponentFixture<ChronologyEventComponent>;
+describe('TrxEditComponent', () => {
+  let component: TrxEditComponent;
+  let fixture: ComponentFixture<TrxEditComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChronologyEventComponent ],
+      declarations: [ TrxEditComponent ],
       imports: [
         NoopAnimationsModule,
         ReactiveFormsModule,
@@ -31,7 +31,7 @@ describe('ChronologyEventComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChronologyEventComponent);
+    fixture = TestBed.createComponent(TrxEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

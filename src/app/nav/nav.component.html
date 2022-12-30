@@ -30,10 +30,10 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="sidenav-content">
-    <app-chronology-event *ngIf="addEventActive"></app-chronology-event>
     <app-customer-edit *ngIf="customerEditActive"></app-customer-edit>
     <app-customers *ngIf="customersActive"></app-customers>
     <app-home *ngIf="homeActive"></app-home>
+    <app-trx-edit *ngIf="trxEditActive"></app-trx-edit>
     <app-trxes *ngIf="trxesActive"></app-trxes>
     <app-page-not-found *ngIf="notFoundActive"></app-page-not-found>
     <app-under-construction *ngIf="underConstructionActive"></app-under-construction>

@@ -10,11 +10,11 @@ import { map, shareReplay } from 'rxjs/operators';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent {
-  addEventActive: boolean = false;
   customerEditActive: boolean = false;
   customersActive: boolean = false;
   homeActive: boolean = false;
   notFoundActive: boolean = false;
+  trxEditActive: boolean = false;
   trxesActive: boolean = false;
   underConstructionActive: boolean = false;
 
@@ -26,9 +26,6 @@ export class NavComponent {
 
   constructor(private route: ActivatedRoute, private breakpointObserver: BreakpointObserver) {
     switch (this.route.snapshot.url.toString()) {
-      case 'chronology-event':
-        this.showAddEvent();
-        break;
       case '':
         this.showHome();
         break;
@@ -42,6 +39,10 @@ export class NavComponent {
       case 'spend-points':
         this.showTrxes();
         break;
+      case 'add-event':
+      case 'trx-edit':
+        this.showTrxEdit();
+        break;
       case 'under':
         this.showUnderConstruction();
         break;
@@ -52,73 +53,48 @@ export class NavComponent {
     }
   }
 
-  showAddEvent() {
-    this.addEventActive = true;
-    this.customerEditActive = false;
-    this.customersActive = false;
-    this.homeActive = false;
-    this.notFoundActive = false;
-    this.trxesActive = false;
-    this.underConstructionActive = false;
-  }
-
   showCustomerEdit() {
-    this.addEventActive = false;
+    this.showNone();
     this.customerEditActive = true;
-    this.customersActive = false;
-    this.homeActive = false;
-    this.notFoundActive = false;
-    this.trxesActive = false;
-    this.underConstructionActive = false;
   }
 
   showCustomers() {
-    this.addEventActive = false;
-    this.customerEditActive = false;
+    this.showNone();
     this.customersActive = true;
-    this.homeActive = false;
-    this.notFoundActive = false;
-    this.trxesActive = false;
-    this.underConstructionActive = false;
-  }
-
-  showTrxes() {
-    this.addEventActive = false;
-    this.customerEditActive = false;
-    this.customersActive = false;
-    this.homeActive = false;
-    this.notFoundActive = false;
-    this.trxesActive = true;
-    this.underConstructionActive = false;
   }
 
   showHome() {
-    this.addEventActive = false;
+    this.showNone();
+    this.homeActive = true;
+  }
+
+  showNone() {
+    this.trxEditActive = false;
     this.customerEditActive = false;
     this.customersActive = false;
-    this.homeActive = true;
+    this.homeActive = false;
     this.notFoundActive = false;
     this.trxesActive = false;
     this.underConstructionActive = false;
   }
 
   showNotFound() {
-    this.addEventActive = false;
-    this.customerEditActive = false;
-    this.customersActive = false;
-    this.homeActive = false;
+    this.showNone();
     this.notFoundActive = true;
-    this.trxesActive = false;
-    this.underConstructionActive = false;
+  }
+
+  showTrxEdit() {
+    this.showNone();
+    this.trxEditActive = true;
+  }
+
+  showTrxes() {
+    this.showNone();
+    this.trxesActive = true;
   }
 
   showUnderConstruction() {
-    this.addEventActive = false;
-    this.customerEditActive = false;
-    this.customersActive = false;
-    this.homeActive = false;
-    this.notFoundActive = false;
-    this.trxesActive = false;
+    this.showNone();
     this.underConstructionActive = true;
   }
 }
