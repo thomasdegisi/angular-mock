@@ -3,6 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, merge, Subscription } from 'rxjs';
+
+import { StatusComponent } from '../status/status.component';
 import { Trx } from '../models/trx';
 import { TrxService } from '../services/trx.service';
 
@@ -17,7 +19,7 @@ export class TrxesDataSource extends DataSource<Trx> {
   sort: MatSort | undefined;
   subscription: Subscription | null = null;
 
-  constructor(private service: TrxService, private typeId: number) {
+  constructor(private service: TrxService, private status: StatusComponent, private typeId: number) {
     super();
   }
 
@@ -54,7 +56,10 @@ export class TrxesDataSource extends DataSource<Trx> {
   getList(): Observable<Trx[]> {
     let observable = this.service.getListByType(this.typeId);
 
-    observable.subscribe(_data => this.data = _data);
+    observable.subscribe(_data => {
+      this.data = _data;
+      this.status.showStatus('Got ' + _data.length + ' transactions.');
+    });
     return observable;
   }
 

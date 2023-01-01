@@ -3,8 +3,10 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, merge, Subscription } from 'rxjs';
+
 import { Customer } from '../models/customer';
 import { CustomerService } from 'src/app/services/customer.service';
+import { StatusComponent } from '../status/status.component';
 
 /**
  * Data source for the Customers view. This class should
@@ -17,7 +19,7 @@ export class CustomersDataSource extends DataSource<Customer> {
   sort: MatSort | undefined;
   subscription: Subscription | null = null;
 
-  constructor(private service: CustomerService) {
+  constructor(private service: CustomerService, private status: StatusComponent) {
     super();
   }
 
@@ -55,7 +57,10 @@ export class CustomersDataSource extends DataSource<Customer> {
   getList(): Observable<Customer[]> {
     let observable = this.service.getList();
 
-    observable.subscribe(_data => this.data = _data);
+    observable.subscribe(_data => {
+      this.data = _data;
+      this.status.showStatus('Got ' + _data.length + ' customers.');
+    });
     return observable;
   }
 

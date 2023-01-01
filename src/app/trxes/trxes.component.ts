@@ -67,11 +67,10 @@ export class TrxesComponent implements AfterViewInit {
             break;
         }
 
-        this.dataSource = new TrxesDataSource(this.dataService, this.typeId);
+        this.dataSource = new TrxesDataSource(this.dataService, this.status, this.typeId);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
         this.table.dataSource = this.dataSource;
-        this.status.showStatus('Got trxes.');
       } catch (exception: any) {
         this.status.showError(exception);
       }

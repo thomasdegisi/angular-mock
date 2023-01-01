@@ -23,7 +23,7 @@ export class ChronologyComponent implements AfterViewInit, OnDestroy {
         .subscribe(trxList => {
           this.status.clear();
           this.events = trxList;
-          this.status.showStatus('Got events.');
+          this.status.showStatus('Got ' + trxList.length + ' events.');
         });
     } catch (exception: any) {
       this.status.showError(exception);

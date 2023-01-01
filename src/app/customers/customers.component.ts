@@ -35,11 +35,10 @@ export class CustomersComponent implements AfterViewInit {
 
   init(): void {
     try {
-      this.dataSource = new CustomersDataSource(this.dataService);
+      this.dataSource = new CustomersDataSource(this.dataService, this.status);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.table.dataSource = this.dataSource;
-      this.status.showStatus('Got customers.');
     } catch (exception: any) {
       this.status.showError(exception);
     }
