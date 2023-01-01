@@ -26,15 +26,15 @@ export class DataService<T extends DbType > {
   }
 
   delete(id: number): Observable<T>  {
-    const url = `${this.url}/${id}`;
+    const _url = this.url + '/' + id;
 
-    return this.http.delete<T>(url, this.httpOptions).pipe(tap(() => this.item = null));
+    return this.http.delete<T>(_url, this.httpOptions).pipe(tap(() => this.item = null));
   }
 
   getById(id: number): Observable<T> {
     const _url = this.url + '/' + id;
 
-    return this.http.get<T>(this.url).pipe(tap((_item: T) => this.item = _item));
+    return this.http.get<T>(_url).pipe(tap((_item: T) => this.item = _item));
   }
 
   getList(): Observable<T[]> {

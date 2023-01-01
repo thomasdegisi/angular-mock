@@ -1,22 +1,15 @@
-<div class="chronology mat-elevation-z8 grow_1">
+<ng-container class="chronology">
   <h1 class="center-text">Chronology</h1>
 
-  <mat-list class="chronology-list">
-    <cdk-virtual-scroll-viewport itemSize="20" class="chronology-viewport">
+  <mat-list>
+    <cdk-virtual-scroll-viewport scrollWindow itemSize="20" class="chronology-viewport">
       <mat-list-item *cdkVirtualFor="let event of events" class="chronology-content">
         {{ event.timestamp | date : event.tsFormat }}: {{ event.text }}
       </mat-list-item>
     </cdk-virtual-scroll-viewport>
   </mat-list>
 
-  <footer>
-    <mat-divider></mat-divider>
-    <table>
-      <tr>
-        <td><a class="add-button" href="trx/0"><mat-icon>add_circle_outline</mat-icon></a></td>
-        <td><app-status class="grow_1"></app-status></td>
-      </tr>
-    </table>
-    <router-outlet></router-outlet>
-  </footer>
-</div>
+  <div class="bottom">
+    <app-status></app-status>
+  </div>
+</ng-container>

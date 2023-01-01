@@ -1,23 +1,24 @@
 import { ActivatedRoute } from '@angular/router';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 
-import { Customer, NEW } from '../models/customer';
 import { CustomerService } from '../services/customer.service';
+import { Customer, NEW } from '../models/customer';
 
 @Component({
   selector: 'app-customer-edit',
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.scss']
 })
-export class CustomerComponent implements AfterViewInit, OnInit {
+export class CustomerComponent implements AfterViewInit {
   item: Customer = NEW;
   form: FormGroup = this.fb.group({
-    id: [null, Validators.required],
+    id: [null],
     firstName: [null, Validators.required],
     lastName: [null, Validators.required],
     address: [null, Validators.required],
-    address2: null,
+    address2: [null],
     city: [null, Validators.required],
     state: [null, Validators.required],
     postalCode: [null, Validators.compose([
@@ -89,30 +90,52 @@ export class CustomerComponent implements AfterViewInit, OnInit {
     {name: 'Wyoming', abbreviation: 'WY'}
   ];
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private service: CustomerService) {}
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private location: Location,
+    private service: CustomerService) {}
 
   get(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
     if (id != 0) {
-      this.form.get('id')?.setValue(id);
-      this.service.getById(id).subscribe(customer => {
-        this.item = customer;
-        this.hasUnitNumber = customer.address2 != null && customer.address2.length > 0;
-        this.form.setValue(customer);
+      this.service.getById(id).subscribe(_item => {
+        this.hasUnitNumber = _item.address2 != null && _item.address2.length > 0;
+        this.item = _item;
+        this.form = this.fb.group({
+          id: [_item.id],
+          firstName: [_item.firstName, Validators.required],
+          lastName: [_item.lastName, Validators.required],
+          address: [_item.address, Validators.required],
+          address2: [_item.address2],
+          city: [_item.city, Validators.required],
+          state: [_item.state, Validators.required],
+          postalCode: [_item.postalCode, Validators.compose([
+            Validators.required, Validators.minLength(5), Validators.maxLength(5)])
+          ],
+        });
       });
     }
   }
 
-  onSubmit(): void {
-    alert('Thanks!');
+  goBack(): void {
+    this.location.back();
   }
 
   ngAfterViewInit(): void {
     this.get();
   }
 
-  ngOnInit(): void {
-    this.get();
+  onSubmit(): void {
+    this.item = this.form.getRawValue();
+
+    if (this.item.id == null) {
+      this.service.add(this.item);
+    } else {
+      this.service.update(this.item);
+    }
+
+    this.goBack();
   }
 }

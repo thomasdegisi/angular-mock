@@ -1,16 +1,10 @@
 .chronology {
-  min-height: fit-content;
-  margin-top: 0px;
   margin-left: 8px;
   margin-right: 8px;
 }
 
-.chronology-list {
-  min-height: fit-content;
-}
-
 .chronology-viewport {
-  min-height: 400px;
+  overflow: scroll;
 }
 
 .chronology-content {
@@ -19,4 +13,9 @@
 
 h1 {
   padding-top: 8px;
+  margin-top: 0;
+}
+
+.bottom {
+  height: 1px;
 }

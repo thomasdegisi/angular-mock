@@ -1,4 +1,4 @@
-<form [formGroup]="trx" novalidate (ngSubmit)="onSubmit()">
+<form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
   <mat-card class="trx-card">
     <mat-card-header>
       <mat-card-title>Transaction</mat-card-title>
@@ -15,7 +15,7 @@
           <mat-form-field class="full-width">
             <mat-label>Type ID</mat-label>
             <input matInput placeholder="Type ID" type="number" min="{{minTypeId}}" max="{{maxTypeId}}" formControlName="typeId">
-            <mat-error *ngIf="trx.controls['typeId'].hasError('required')">
+            <mat-error *ngIf="form.controls['typeId'].hasError('required')">
               Type ID is <strong>required</strong>
             </mat-error>
           </mat-form-field>
@@ -41,6 +41,7 @@
           <mat-form-field class="full-width">
             <mat-label>Timestamp Format</mat-label>
             <input matInput placeholder="Timestamp Format" formControlName="tsFormat">
+            <mat-hint>YYYY-MM-dd, YYYY or nothing for example.</mat-hint>
           </mat-form-field>
         </div>
         <div class="col">
@@ -55,15 +56,13 @@
           <mat-form-field class="full-width">
             <mat-label>Text</mat-label>
             <textarea matInput placeholder="Text" formControlName="text"></textarea>
-            <mat-error *ngIf="trx.controls['text'].hasError('required')">
-              Text is <strong>required</strong>
-            </mat-error>
           </mat-form-field>
         </div>
       </div>
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="primary" type="submit">Submit</button>
+      <button mat-raised-button type="cancel">Cancel</button>
     </mat-card-actions>
   </mat-card>
 </form>
