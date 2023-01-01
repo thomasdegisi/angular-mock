@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { catchError, Observable, of, tap } from 'rxjs';
+
 import { DataService } from '../services/data.service';
+import { DbType } from '../models/db-type';
 import { StatusComponent } from '../status/status.component';
 
 @Component({
@@ -9,7 +11,7 @@ import { StatusComponent } from '../status/status.component';
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss']
 })
-export class DialogComponent<T> {
+export class DialogComponent<T extends DbType> {
   title: string = '';
   body: string = '';
   returnTrueLabel: string = '';
@@ -36,7 +38,7 @@ export class DialogComponent<T> {
     return ref.afterClosed();
   }
 
-  deleteDialog<T>(id: number, status: StatusComponent, service: DataService<T>): void {
+  deleteDialog(id: number, status: StatusComponent, service: DataService<T>): void {
     let idDisplay: string = service.idDisplay(id);
 
     this.dialogResult('', 'Delete' + idDisplay + '?', 'Delete').subscribe((deleteIt) => {

@@ -1,12 +1,24 @@
-export interface Trx {
-  id: number;
-  typeId: number;
-  linkId: number;
-  timestamp: Date,
-  tsFormat: string;
-  text: string;
-  value: number;
+import { DbType } from "./db-type";
+
+export interface Trx extends DbType {
+  id: number | null;
+  typeId: number | null;
+  linkId: number | null;
+  timestamp: Date | null;
+  tsFormat: string | null;
+  text: string | null;
+  value: number | null;
 }
+
+export const NEW: Trx = {
+  id: null,
+  typeId: null,
+  linkId: null,
+  timestamp: null,
+  tsFormat: null,
+  text: null,
+  value: null,
+};
 
 export const ALL_TYPES_TYPE_ID: number = -2;
 export const INVALID_TYPE_ID: number = -1;

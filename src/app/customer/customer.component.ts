@@ -1,13 +1,18 @@
-import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { Customer, NEW } from '../models/customer';
+import { CustomerService } from '../services/customer.service';
 
 @Component({
   selector: 'app-customer-edit',
-  templateUrl: './customer-edit.component.html',
-  styleUrls: ['./customer-edit.component.scss']
+  templateUrl: './customer.component.html',
+  styleUrls: ['./customer.component.scss']
 })
-export class CustomerEditComponent {
-  customerForm = this.fb.group({
+export class CustomerComponent implements AfterViewInit, OnInit {
+  item: Customer = NEW;
+  form: FormGroup = this.fb.group({
     id: [null, Validators.required],
     firstName: [null, Validators.required],
     lastName: [null, Validators.required],
@@ -84,9 +89,30 @@ export class CustomerEditComponent {
     {name: 'Wyoming', abbreviation: 'WY'}
   ];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private service: CustomerService) {}
+
+  get(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+
+    if (id != 0) {
+      this.form.get('id')?.setValue(id);
+      this.service.getById(id).subscribe(customer => {
+        this.item = customer;
+        this.hasUnitNumber = customer.address2 != null && customer.address2.length > 0;
+        this.form.setValue(customer);
+      });
+    }
+  }
 
   onSubmit(): void {
     alert('Thanks!');
+  }
+
+  ngAfterViewInit(): void {
+    this.get();
+  }
+
+  ngOnInit(): void {
+    this.get();
   }
 }

@@ -4,14 +4,15 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+
+import { DialogComponent } from '../dialog/dialog.component';
+import { StatusComponent } from '../status/status.component';
 import {
   ALL_TYPES_TYPE_ID,
   CHRONOLOGY_EVENT_TYPE_ID,
   GET_LOYALTY_TYPE_ID,
   INVALID_TYPE_ID,
   SPEND_LOYALTY_TYPE_ID, Trx } from '../models/trx';
-import { DialogComponent } from '../dialog/dialog.component';
-import { StatusComponent } from '../status/status.component';
 import { TrxesDataSource } from './trxes-datasource';
 import { TrxService } from '../services/trx.service';
 
@@ -26,11 +27,11 @@ export class TrxesComponent implements AfterViewInit {
   @ViewChild(MatTable) table!: MatTable<Trx>;
   @ViewChild(StatusComponent) status!: StatusComponent;
   dataSource!: TrxesDataSource;
-  data: Trx[] = [];
   dialog!: DialogComponent<Trx>;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns: string[] = [];
+  displayedColumns: string[] = ['id', 'text', 'value', 'actions'];
+  typeId: number = INVALID_TYPE_ID;
 
   constructor(
     private route: ActivatedRoute,
@@ -45,33 +46,28 @@ export class TrxesComponent implements AfterViewInit {
   }
 
   init(): void {
-    this.route.url.subscribe((url) => {
+    this.route.url.subscribe((_url) => {
       this.status.clear();
-      this.displayedColumns = ['id', 'desc', 'value', 'actions'];
 
       try {
-        let trxTypeId: number = INVALID_TYPE_ID;
-
-        switch (url.toString()) {
+        switch (_url.toString()) {
           case 'events':
-            trxTypeId = CHRONOLOGY_EVENT_TYPE_ID;
-            this.displayedColumns = ['id', 'timestamp', 'tsFormat', 'desc', 'actions'];
+            this.displayedColumns = ['id', 'timestamp', 'tsFormat', 'text', 'actions'];
+            this.typeId = CHRONOLOGY_EVENT_TYPE_ID;
             break;
           case 'get-points':
-            trxTypeId = GET_LOYALTY_TYPE_ID;
+            this.typeId = GET_LOYALTY_TYPE_ID;
             break;
           case 'spend-points':
-            trxTypeId = SPEND_LOYALTY_TYPE_ID;
+            this.typeId = SPEND_LOYALTY_TYPE_ID;
             break;
           case 'trxes':
-            trxTypeId = ALL_TYPES_TYPE_ID;
-            this.displayedColumns = ['id', 'typeId', 'linkId', 'timestamp', 'tsFormat', 'desc', 'value', 'actions'];
-            break;
-          default:
+            this.displayedColumns = ['id', 'typeId', 'linkId', 'timestamp', 'tsFormat', 'text', 'value', 'actions'];
+            this.typeId = ALL_TYPES_TYPE_ID;
             break;
         }
 
-        this.dataSource = new TrxesDataSource(this.dataService, trxTypeId);
+        this.dataSource = new TrxesDataSource(this.dataService, this.typeId);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
         this.table.dataSource = this.dataSource;

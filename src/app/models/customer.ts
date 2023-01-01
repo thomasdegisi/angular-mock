@@ -1,5 +1,7 @@
-export interface Customer {
-  id: number;
+import { DbType } from "./db-type";
+
+export interface Customer extends DbType {
+  id: number | null;
   firstName: string | null;
   lastName: string | null;
   address: string | null;
@@ -8,3 +10,15 @@ export interface Customer {
   state: string | null;
   postalCode: string | null;
 }
+
+export const NEW: Customer = {
+  id: null,
+  firstName: null,
+  lastName: null,
+  address: null,
+  address2: null,
+  city: null,
+  state: null,
+  postalCode: null,
+};
+

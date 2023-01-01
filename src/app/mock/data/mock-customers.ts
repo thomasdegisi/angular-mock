@@ -51,6 +51,16 @@ export const CUSTOMER_LIST: Customer[] = [
     state: 'OK',
     postalCode: '73663',
   },
+  {
+    id: 6,
+    firstName: 'Junior',
+    lastName: 'Burger',
+    address: '15336 State Hwy 99 N',
+    address2: '',
+    city: 'Tigard',
+    state: 'OR',
+    postalCode: '97224',
+  },
 ];
 
 /* blank

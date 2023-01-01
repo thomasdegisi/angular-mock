@@ -1,11 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+
+import { DbType } from '../models/db-type';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DataService<T> {
+export class DataService<T extends DbType > {
+  protected item: T | null = null;
+  protected items!: T[];
   protected name = 'unknown'
   protected url = '/unknown';
   protected http!: HttpClient;
@@ -17,33 +21,33 @@ export class DataService<T> {
   constructor() {
   }
 
-  add<T>(item: T): Observable<T> {
-    return this.http.post<T>(this.url, item, this.httpOptions);
+  add(item: T): Observable<T> {
+    return this.http.post<T>(this.url, item, this.httpOptions).pipe(tap(() => this.item = item));
   }
 
-  delete<T>(id: number): Observable<T>  {
+  delete(id: number): Observable<T>  {
     const url = `${this.url}/${id}`;
 
-    return this.http.delete<T>(url, this.httpOptions);
+    return this.http.delete<T>(url, this.httpOptions).pipe(tap(() => this.item = null));
   }
 
-  getById<T>(id: number): Observable<T> {
+  getById(id: number): Observable<T> {
     const _url = this.url + '/' + id;
 
-    return this.http.get<T>(this.url);
+    return this.http.get<T>(this.url).pipe(tap((_item: T) => this.item = _item));
   }
 
-  getList<T>(): Observable<T[]> {
+  getList(): Observable<T[]> {
     // To test upstream error display uncomment the below.
     // throw new Error('12345 67890 22345 67890 32345 67890 42345 67890 52345 67890 62345 67890 72345 67890 82345 67890 92345 67890');
-    return this.http.get<T[]>(this.url);
+    return this.http.get<T[]>(this.url).pipe(tap((_items: T[]) => this.items = _items));
   }
 
   idDisplay(id: number): string {
     return ' ' + this.name + ' with id(' + id + ')';
   }
 
-  update<T>(item: T): Observable<T> {
-    return this.http.put<T>(this.url, item, this.httpOptions);
+  update(item: T): Observable<T> {
+    return this.http.put<T>(this.url, item, this.httpOptions).pipe(tap(() => this.item = item));
   }
 }

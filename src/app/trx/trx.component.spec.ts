@@ -8,15 +8,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 
-import { TrxEditComponent } from './trx-edit.component';
+import { TrxComponent } from './trx.component';
 
 describe('TrxEditComponent', () => {
-  let component: TrxEditComponent;
-  let fixture: ComponentFixture<TrxEditComponent>;
+  let component: TrxComponent;
+  let fixture: ComponentFixture<TrxComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TrxEditComponent ],
+      declarations: [ TrxComponent ],
       imports: [
         NoopAnimationsModule,
         ReactiveFormsModule,
@@ -31,7 +31,7 @@ describe('TrxEditComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TrxEditComponent);
+    fixture = TestBed.createComponent(TrxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

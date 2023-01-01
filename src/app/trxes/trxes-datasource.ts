@@ -1,6 +1,6 @@
 import { DataSource } from '@angular/cdk/collections';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatSort, Sort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, merge, Subscription } from 'rxjs';
 import { Trx } from '../models/trx';
@@ -17,7 +17,7 @@ export class TrxesDataSource extends DataSource<Trx> {
   sort: MatSort | undefined;
   subscription: Subscription | null = null;
 
-  constructor(private trxService: TrxService, private typeId: number) {
+  constructor(private service: TrxService, private typeId: number) {
     super();
   }
 
@@ -28,15 +28,14 @@ export class TrxesDataSource extends DataSource<Trx> {
    */
   connect(): Observable<Trx[]> {
     if (this.paginator && this.sort) {
-      // Combine everything that affects the rendered data into one update
-      // stream for the data-table to consume.
-      let observable = merge(this.trxService.getListByType(this.typeId), this.paginator.page, this.sort.sortChange)
-        .pipe(map((_data) => {
-          this.data = this.getPagedData(this.getSortedData(_data));
-          return this.data;
-        }));
-      this.subscription = observable.subscribe();
-      return observable;
+        // Combine everything that affects the rendered data into one update
+        // stream for the data-table to consume.
+        let observable = merge(this.getList(), this.paginator.page, this.sort.sortChange)
+          .pipe(map(() => {
+            return this.getPagedData(this.getSortedData([...this.data]));
+          }));
+        this.subscription = observable.subscribe();
+        return observable;
     } else {
       throw Error('Please set the paginator and sort on the data source before connecting.');
     }
@@ -50,6 +49,13 @@ export class TrxesDataSource extends DataSource<Trx> {
     if (this.subscription != null) {
       this.subscription.unsubscribe();
     }
+  }
+
+  getList(): Observable<Trx[]> {
+    let observable = this.service.getListByType(this.typeId);
+
+    observable.subscribe(_data => this.data = _data);
+    return observable;
   }
 
   /**
@@ -69,27 +75,28 @@ export class TrxesDataSource extends DataSource<Trx> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(_data: Trx[] | PageEvent | Sort): Trx[] {
-    if (Array.isArray(_data)) {
-      if (!this.sort || !this.sort.active || this.sort.direction === '') {
-        return _data;
-      }
-
-      return _data.sort((a, b) => {
-        const isAsc = this.sort?.direction === 'asc';
-        switch (this.sort?.active) {
-          case 'desc': return compare(a.text, b.text, isAsc);
-          case 'points': return compare(+a.value, +b.value, isAsc);
-          default: return 0;
-        }
-      });
-    } else {
-      return this.getSortedData(this.data);
+  private getSortedData(_data: Trx[]): Trx[] {
+    if (!this.sort || !this.sort.active || this.sort.direction === '') {
+      return _data;
     }
+
+    return _data.sort((a, b) => {
+      const isAsc = this.sort?.direction === 'asc';
+      switch (this.sort?.active) {
+        case 'id': return compare(a.id!, b.id!, isAsc);
+        case 'typeId': return compare(a.typeId!, b.typeId!, isAsc);
+        case 'linkId': return compare(a.linkId!, b.linkId!, isAsc);
+        case 'timestamp': return compare(a.timestamp!, b.timestamp!, isAsc);
+        case 'tsFormat': return compare(a.tsFormat!, b.tsFormat!, isAsc);
+        case 'text': return compare(a.text!, b.text!, isAsc);
+        case 'value': return compare(+a.value!, +b.value!, isAsc);
+        default: return 0;
+      }
+    });
   }
 }
 
 /** Simple sort comparator for example ID/Name columns (for client-side sorting). */
-function compare(a: string | number, b: string | number, isAsc: boolean): number {
+function compare(a: string | number | Date, b: string | number | Date, isAsc: boolean): number {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
