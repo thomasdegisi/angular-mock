@@ -1,10 +1,12 @@
 import { ActivatedRoute } from '@angular/router';
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
+import { delay, Observable, tap } from 'rxjs';
 
 import { MAX_TRX_TYPE_ID, NEW, Trx, TYPE_TYPE_ID } from '../models/trx';
 import { TrxService } from '../services/trx.service';
+import { StatusComponent } from '../status/status.component';
 
 @Component({
   selector: 'app-trx',
@@ -12,6 +14,7 @@ import { TrxService } from '../services/trx.service';
   styleUrls: ['./trx.component.scss']
 })
 export class TrxComponent implements AfterViewInit {
+  @ViewChild(StatusComponent) status!: StatusComponent;
   item: Trx = NEW;
   minTypeId = TYPE_TYPE_ID;
   maxTypeId = MAX_TRX_TYPE_ID;
@@ -31,7 +34,11 @@ export class TrxComponent implements AfterViewInit {
     private location: Location,
     private service: TrxService) {}
 
-  get(): void {
+    getMessageTail(): string {
+      return ' transaction with id(' + this.item.id + ') and typeId(' + this.item.typeId + ').';
+    }
+
+    get(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
     if (id != 0) {
@@ -61,12 +68,20 @@ export class TrxComponent implements AfterViewInit {
   onSubmit(): void {
     this.item = this.form.getRawValue();
 
+    let messageHead: string;
+    let observable: Observable<Trx>;
+
     if (this.item.id == null) {
-      this.service.add(this.item);
+      observable = this.service.add(this.item);
+      messageHead = 'Added';
     } else {
-      this.service.update(this.item);
+      observable = this.service.update(this.item);
+      messageHead = 'Updated';
     }
 
-    this.goBack();
+    observable.pipe(
+      tap(() => this.status.showStatus(messageHead + this.getMessageTail())),
+      delay(2000),
+    ).subscribe(() => this.goBack());
   }
 }

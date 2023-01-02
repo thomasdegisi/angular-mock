@@ -1,10 +1,12 @@
 import { ActivatedRoute } from '@angular/router';
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
+import { delay, Observable, tap } from 'rxjs';
 
 import { CustomerService } from '../services/customer.service';
 import { Customer, NEW } from '../models/customer';
+import { StatusComponent } from '../status/status.component';
 
 @Component({
   selector: 'app-customer-edit',
@@ -12,6 +14,7 @@ import { Customer, NEW } from '../models/customer';
   styleUrls: ['./customer.component.scss']
 })
 export class CustomerComponent implements AfterViewInit {
+  @ViewChild(StatusComponent) status!: StatusComponent;
   item: Customer = NEW;
   form: FormGroup = this.fb.group({
     id: [null],
@@ -22,7 +25,7 @@ export class CustomerComponent implements AfterViewInit {
     city: [null, Validators.required],
     state: [null, Validators.required],
     postalCode: [null, Validators.compose([
-      Validators.required, Validators.minLength(5), Validators.maxLength(5)])
+      Validators.minLength(5), Validators.maxLength(5)])
     ],
   });
 
@@ -96,6 +99,10 @@ export class CustomerComponent implements AfterViewInit {
     private location: Location,
     private service: CustomerService) {}
 
+  getMessageTail(): string {
+    return ' ' + this.item.firstName + ' ' + this.item.lastName + '.';
+  }
+
   get(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
@@ -115,6 +122,7 @@ export class CustomerComponent implements AfterViewInit {
             Validators.required, Validators.minLength(5), Validators.maxLength(5)])
           ],
         });
+        this.status.showStatus('Got' + this.getMessageTail());
       });
     }
   }
@@ -130,12 +138,20 @@ export class CustomerComponent implements AfterViewInit {
   onSubmit(): void {
     this.item = this.form.getRawValue();
 
+    let messageHead: string;
+    let observable: Observable<Customer>;
+
     if (this.item.id == null) {
-      this.service.add(this.item);
+      observable = this.service.add(this.item);
+      messageHead = 'Added';
     } else {
-      this.service.update(this.item);
+      observable = this.service.update(this.item);
+      messageHead = 'Updated';
     }
 
-    this.goBack();
+    observable.pipe(
+      tap(() => this.status.showStatus(messageHead + this.getMessageTail())),
+      delay(1500),
+    ).subscribe(() => this.goBack());
   }
 }

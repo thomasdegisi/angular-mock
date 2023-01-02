@@ -54,6 +54,15 @@ export const TRX_LIST: Trx[] = [
     value: LOYALTY_TRX_TYPE_ID, // Loyalty Transactions will have typeId: 4
   },
   {
+    id: 44,
+    typeId: 1,
+    linkId: null,
+    timestamp: new Date(2023, 0, 1, 18, 52, 0, 0),
+    tsFormat: 'YYYY-MM-dd HH:mm',
+    text: 'On submit edit screens show status for a bit before going back.',
+    value: null,
+  },
+  {
     id: 43,
     typeId: 1,
     linkId: null,

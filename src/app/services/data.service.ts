@@ -21,8 +21,9 @@ export class DataService<T extends DbType > {
   constructor() {
   }
 
-  add(item: T): Observable<T> {
-    return this.http.post<T>(this.url, item, this.httpOptions).pipe(tap(() => this.item = item));
+  add(_item: T): Observable<T> {
+    this.item = _item;
+    return this.http.post<T>(this.url, _item, this.httpOptions);
   }
 
   delete(id: number): Observable<T>  {
@@ -47,7 +48,8 @@ export class DataService<T extends DbType > {
     return ' ' + this.name + ' with id(' + id + ')';
   }
 
-  update(item: T): Observable<T> {
-    return this.http.put<T>(this.url, item, this.httpOptions).pipe(tap(() => this.item = item));
+  update(_item: T): Observable<T> {
+    this.item = _item;
+    return this.http.put<T>(this.url, _item, this.httpOptions);
   }
 }
