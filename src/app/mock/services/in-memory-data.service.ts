@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
 import { CUSTOMER_LIST } from '../data/mock-customers';
+import { DbType, ID_MIN } from '../../models/db-type';
 import { TRX_LIST } from '../data/mock-trx';
 
 @Injectable({
@@ -12,5 +13,15 @@ export class InMemoryDataService implements InMemoryDbService {
     const customers = CUSTOMER_LIST;
     const trxes = TRX_LIST;
     return {customers: customers, trxes: trxes};
+  }
+
+  private nullToMin(id: number | null) {
+    return id === null ? ID_MIN : id;
+  }
+
+  genId<T extends DbType>(collection: T[], collectionName: string): number {
+    return collection.length > 0 ?
+      Math.max(...collection.map(_item => this.nullToMin(_item.id))) + 1 :
+      ID_MIN;
   }
 }

@@ -10,52 +10,66 @@ import {
 export const TRX_LIST: Trx[] = [
   {
     id: 1,
-    typeId: 0, // Define transaction types using typeId of 0.
+    typeId: TYPE_TYPE_ID,
     linkId: null,
     timestamp: null,
     tsFormat: null,
     text: 'Type',
-    value: TYPE_TYPE_ID, // Types (like this one) will have typeId: 0
+    // Types (like this one) will have typeId: TYPE_TYPE_ID
+    value: TYPE_TYPE_ID,
   },
   {
     id: 2,
-    typeId: 0,
+    typeId: TYPE_TYPE_ID,
     linkId: null,
     timestamp: null,
     tsFormat: null,
     text: 'Chronology Event',
-    value: CHRONOLOGY_EVENT_TYPE_ID, // Chronology Events will have typeId: 1
+    // Chronology Events will have typeId: CHRONOLOGY_EVENT_TYPE_ID
+    value: CHRONOLOGY_EVENT_TYPE_ID,
   },
   {
     id: 3,
-    typeId: 0,
+    typeId: TYPE_TYPE_ID,
     linkId: null,
     timestamp: null,
     tsFormat: null,
     text: 'Get Loyalty',
-    value: GET_LOYALTY_TYPE_ID, // Get Loyalty will have typeId: 2
+    // Get Loyalty will have typeId: GET_LOYALTY_TYPE_ID
+    value: GET_LOYALTY_TYPE_ID,
   },
   {
     id: 4,
-    typeId: 0,
+    typeId: TYPE_TYPE_ID,
     linkId: null,
     timestamp: null,
     tsFormat: null,
     text: 'Spend Loyalty',
-    value: SPEND_LOYALTY_TYPE_ID, // Spend Loyalty will have typeId: 3
+    // Spend Loyalty will have typeId: SPEND_LOYALTY_TYPE_ID
+    value: SPEND_LOYALTY_TYPE_ID,
   },
   {
     id: 5,
-    typeId: 0,
+    typeId: TYPE_TYPE_ID,
     linkId: null,
     timestamp: null,
     tsFormat: null,
     text: 'Loyalty Transaction',
-    value: LOYALTY_TRX_TYPE_ID, // Loyalty Transactions will have typeId: 4
+    // Loyalty Transactions will have typeId: LOYALTY_TRX_TYPE_ID
+    value: LOYALTY_TRX_TYPE_ID,
+  },
+  {
+    id: 47,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
+    linkId: null,
+    timestamp: new Date(2023, 0, 5, 18, 51, 0, 0),
+    tsFormat: 'YYYY-MM-dd HH:mm',
+    text: 'Add customer or trx now generates an ID.',
+    value: null,
   },
   {
     id: 44,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(2023, 0, 1, 18, 52, 0, 0),
     tsFormat: 'YYYY-MM-dd HH:mm',
@@ -64,7 +78,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 43,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(2023, 0, 1, 12, 15, 0, 0),
     tsFormat: 'YYYY-MM-dd HH:mm',
@@ -73,7 +87,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 42,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(2022, 11, 31, 22, 9, 0, 0),
     tsFormat: 'YYYY-MM-dd',
@@ -82,7 +96,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 41,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(2022, 11, 30, 17, 36, 0, 0),
     tsFormat: 'YYYY-MM-dd',
@@ -91,7 +105,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 40,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(2022, 11, 30, 0, 9, 0, 0),
     tsFormat: 'YYYY-MM-dd',
@@ -100,7 +114,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 39,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(2022, 11, 29, 14, 6, 0, 0),
     tsFormat: 'YYYY-MM-dd',
@@ -109,7 +123,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 38,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(2022, 11, 28, 22, 17, 0, 0),
     tsFormat: 'YYYY-MM-dd',
@@ -118,7 +132,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 37,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(2022, 11, 28, 13, 35, 0, 0),
     tsFormat: 'YYYY-MM-dd',
@@ -127,7 +141,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 36,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(2022, 11, 26, 23, 36, 0, 0),
     tsFormat: 'YYYY-MM-dd',
@@ -136,7 +150,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 6,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(2022, 11, 21, 22, 15, 0, 0),
     tsFormat: 'YYYY-MM-dd',
@@ -145,7 +159,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 7,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(2022, 11, 20, 12, 9, 0, 0),
     tsFormat: 'YYYY-MM-dd',
@@ -154,7 +168,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 8,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(2022, 11, 18, 22, 20, 0, 0),
     tsFormat: 'YYYY-MM-dd',
@@ -163,7 +177,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 9,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(2022, 11, 17, 12, 43, 0, 0),
     tsFormat: 'YYYY-MM-dd',
@@ -172,7 +186,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 10,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(2022, 11, 13, 12, 0, 0, 0),
     tsFormat: 'YYYY-MM-dd',
@@ -181,7 +195,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 11,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(2022, 11, 9, 12, 0, 0, 0),
     tsFormat: 'YYYY-MM-dd',
@@ -190,7 +204,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 12,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(2022, 11, 8, 12, 0, 0, 0),
     tsFormat: 'YYYY-MM-dd',
@@ -199,7 +213,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 13,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(2022, 8, 12, 12, 0, 0, 0),
     tsFormat: 'YYYY-MM-dd',
@@ -208,7 +222,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 14,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(2002, 0, 15, 12, 0, 0, 0),
     text: 'Tom employed by Sprint (now T-Mobile) - year correct, no month or day.',
@@ -217,7 +231,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 15,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(1999, 0, 15, 12, 0, 0, 0),
     text: 'Tom employed by Bradford & Galt - year correct, no month or day.',
@@ -226,7 +240,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 16,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(1998, 6, 14, 12, 0, 0, 0),
     tsFormat: 'YYYY-MM-dd',
@@ -235,7 +249,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 17,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(1997, 2, 28, 12, 0, 0, 0),
     tsFormat: 'YYYY-MM-dd',
@@ -244,7 +258,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 18,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(1996, 0, 15, 12, 0, 0, 0),
     text: 'Tom employed by S.A.I.C - year correct, no month or day.',
@@ -253,7 +267,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 19,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(1995, 1, 20, 12, 0, 0, 0),
     tsFormat: 'YYYY-MM-dd',
@@ -262,7 +276,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 20,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(1992, 0, 15, 12, 0, 0, 0),
     text: 'Tom employed by CompuSpeak - year correct, no month or day.',
@@ -271,7 +285,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 21,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(1989, 4, 28, 12, 0, 0, 0),
     tsFormat: 'YYYY-MM-dd',
@@ -280,7 +294,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 22,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(1988, 0, 15, 12, 0, 0, 0),
     tsFormat: 'YYYY',
@@ -289,7 +303,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 23,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(1961, 7, 19, 12, 0, 0, 0),
     tsFormat: 'YYYY-MM-dd',
@@ -298,7 +312,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 24,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(1960, 5, 17, 12, 0, 0, 0),
     text: 'Janice DeGisi gives birth to Thomas Louis.',
@@ -307,7 +321,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 25,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(1930, 10, 12, 12, 0, 0, 0),
     tsFormat: 'YYYY-MM-dd',
@@ -316,7 +330,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 26,
-    typeId: 1,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,
     timestamp: new Date(1926, 4, 24, 12, 0, 0, 0),
     tsFormat: 'YYYY-MM-dd',
@@ -325,7 +339,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 27,
-    typeId: 2,
+    typeId: GET_LOYALTY_TYPE_ID,
     linkId: null,
     timestamp: null,
     tsFormat: null,
@@ -334,7 +348,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 28,
-    typeId: 2,
+    typeId: GET_LOYALTY_TYPE_ID,
     linkId: null,
     timestamp: null,
     tsFormat: null,
@@ -343,7 +357,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 29,
-    typeId: 2,
+    typeId: GET_LOYALTY_TYPE_ID,
     linkId: null,
     timestamp: null,
     tsFormat: null,
@@ -352,7 +366,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 30,
-    typeId: 2,
+    typeId: GET_LOYALTY_TYPE_ID,
     linkId: null,
     timestamp: null,
     tsFormat: null,
@@ -361,7 +375,7 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 31,
-    typeId: 2,
+    typeId: GET_LOYALTY_TYPE_ID,
     linkId: null,
     timestamp: null,
     tsFormat: null,
@@ -370,39 +384,57 @@ export const TRX_LIST: Trx[] = [
   },
   {
     id: 32,
-    typeId: 3,
+    typeId: SPEND_LOYALTY_TYPE_ID,
     linkId: null,
     timestamp: null,
     tsFormat: null,
     text: 'Buy a full price meal, get a cocktail free.',
-    value: 1000,
+    value: -1000,
   },
   {
     id: 33,
-    typeId: 3,
+    typeId: SPEND_LOYALTY_TYPE_ID,
     linkId: null,
     timestamp: null,
     tsFormat: null,
     text: 'Buy a full price meal, get a premium cocktail free.',
-    value: 2000,
+    value: -2000,
   },
   {
     id: 34,
-    typeId: 3,
+    typeId: SPEND_LOYALTY_TYPE_ID,
     linkId: null,
     timestamp: null,
     tsFormat: null,
     text: 'Buy a cocktail, get a second cocktail free.',
-    value: 4000,
+    value: -4000,
   },
   {
     id: 35,
-    typeId: 3,
+    typeId: SPEND_LOYALTY_TYPE_ID,
     linkId: null,
     timestamp: null,
     tsFormat: null,
     text: 'Buy a premium cocktail, get a second premium cocktail free.',
-    value: 8000,
+    value: -8000,
+  },
+  {
+    id: 45,
+    typeId: LOYALTY_TRX_TYPE_ID,
+    linkId: 1,
+    timestamp: null,
+    tsFormat: null,
+    text: 'Cater an event.',
+    value: 5000,
+  },
+  {
+    id: 46,
+    typeId: LOYALTY_TRX_TYPE_ID,
+    linkId: 1,
+    timestamp: null,
+    tsFormat: null,
+    text: 'Buy a full price meal, get a cocktail free.',
+    value: -1000,
   },
 ];
 

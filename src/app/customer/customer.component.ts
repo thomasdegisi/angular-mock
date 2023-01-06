@@ -100,7 +100,7 @@ export class CustomerComponent implements AfterViewInit {
     private service: CustomerService) {}
 
   getMessageTail(): string {
-    return ' ' + this.item.firstName + ' ' + this.item.lastName + '.';
+    return ' ' + this.item.firstName + ' ' + this.item.lastName + ', ' + this.item.id + '.';
   }
 
   get(): void {
@@ -150,7 +150,10 @@ export class CustomerComponent implements AfterViewInit {
     }
 
     observable.pipe(
-      tap(() => this.status.showStatus(messageHead + this.getMessageTail())),
+      tap((_item) => {
+        this.item = _item;
+        this.status.showStatus(messageHead + this.getMessageTail());
+      }),
       delay(1500),
     ).subscribe(() => this.goBack());
   }
