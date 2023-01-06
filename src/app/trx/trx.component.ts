@@ -81,7 +81,9 @@ export class TrxComponent implements AfterViewInit {
 
     observable.pipe(
       tap((_item) => {
-        this.item = _item;
+        if (this.item.id == null) {
+          this.item = _item;
+        }
         this.status.showStatus(messageHead + this.getMessageTail());
       }),
       delay(2000),
