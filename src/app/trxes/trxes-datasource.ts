@@ -1,9 +1,6 @@
-import { DataSource } from '@angular/cdk/collections';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { map } from 'rxjs/operators';
-import { Observable, merge, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
+import { DbDataSource } from '../services/db-datasource';
 import { StatusComponent } from '../status/status.component';
 import { Trx } from '../models/trx';
 import { TrxService } from '../services/trx.service';
@@ -13,44 +10,10 @@ import { TrxService } from '../services/trx.service';
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class TrxesDataSource extends DataSource<Trx> {
-  data: Trx[] = [];
-  paginator: MatPaginator | undefined;
-  sort: MatSort | undefined;
-  subscription: Subscription | null = null;
+export class TrxesDataSource extends DbDataSource<Trx> {
 
-  constructor(private service: TrxService, private status: StatusComponent, private typeId: number) {
-    super();
-  }
-
-  /**
-   * Connect this data source to the table. The table will only update when
-   * the returned stream emits new items.
-   * @returns A stream of the items to be rendered.
-   */
-  connect(): Observable<Trx[]> {
-    if (this.paginator && this.sort) {
-        // Combine everything that affects the rendered data into one update
-        // stream for the data-table to consume.
-        let observable = merge(this.getList(), this.paginator.page, this.sort.sortChange)
-          .pipe(map(() => {
-            return this.getPagedData(this.getSortedData([...this.data]));
-          }));
-        this.subscription = observable.subscribe();
-        return observable;
-    } else {
-      throw Error('Please set the paginator and sort on the data source before connecting.');
-    }
-  }
-
-  /**
-   *  Called when the table is being destroyed. Use this function, to clean up
-   * any open connections or free any held resources that were set up during connect.
-   */
-  disconnect(): void {
-    if (this.subscription != null) {
-      this.subscription.unsubscribe();
-    }
+  constructor(public override service: TrxService, public override status: StatusComponent, private typeId: number) {
+    super(service, status);
   }
 
   getList(): Observable<Trx[]> {
@@ -64,23 +27,10 @@ export class TrxesDataSource extends DataSource<Trx> {
   }
 
   /**
-   * Paginate the data (client-side). If you're using server-side pagination,
-   * this would be replaced by requesting the appropriate data from the server.
-   */
-  private getPagedData(_data: Trx[]): Trx[] {
-    if (this.paginator) {
-      const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-      return _data.splice(startIndex, this.paginator.pageSize);
-    } else {
-      return _data;
-    }
-  }
-
-  /**
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(_data: Trx[]): Trx[] {
+  public getSortedData(_data: Trx[]): Trx[] {
     if (!this.sort || !this.sort.active || this.sort.direction === '') {
       return _data;
     }

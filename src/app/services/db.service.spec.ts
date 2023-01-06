@@ -1,17 +1,17 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { DataService } from './data.service';
+import { DbService } from './db.service';
 import { Trx } from '../models/trx';
 
 describe('DataService', () => {
-  let service: DataService<Trx>;
+  let service: DbService<Trx>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ HttpClientTestingModule, ],
     });
-    service = TestBed.inject(DataService);
+    service = TestBed.inject(DbService);
   });
 
   it('should be created', () => {

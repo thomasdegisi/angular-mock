@@ -38,11 +38,10 @@ export class TrxesComponent implements AfterViewInit {
     private dataService: TrxService,
     public _dialog: MatDialog
   ) {
-    this.dialog = new DialogComponent(_dialog);
   }
 
   delete(id: number): void {
-    this.dialog.deleteDialog(id, this.status, this.dataService);
+    this.dialog.deleteDialog(id, this.status, this.dataSource);
   }
 
   init(): void {
@@ -68,6 +67,7 @@ export class TrxesComponent implements AfterViewInit {
         }
 
         this.dataSource = new TrxesDataSource(this.dataService, this.status, this.typeId);
+        this.dialog = new DialogComponent(this._dialog, this.dataService);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
         this.table.dataSource = this.dataSource;

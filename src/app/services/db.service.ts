@@ -7,7 +7,7 @@ import { DbType } from '../models/db-type';
 @Injectable({
   providedIn: 'root'
 })
-export class DataService<T extends DbType > {
+export class DbService<T extends DbType> {
   protected name = 'unknown'
   protected url = '/unknown';
   protected http!: HttpClient;
@@ -46,6 +46,8 @@ export class DataService<T extends DbType > {
   }
 
   update(_item: T): Observable<T> {
-    return this.http.put<T>(this.url, _item, this.httpOptions).pipe(retry(2));
+    const _url = this.url + '/' + _item.id;
+
+    return this.http.put<T>(_url, _item, this.httpOptions).pipe(retry(2));
   }
 }

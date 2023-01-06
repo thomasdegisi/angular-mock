@@ -26,16 +26,16 @@ export class CustomersComponent implements AfterViewInit {
   displayedColumns = ['id', 'firstName', 'lastName', 'address', 'city', 'state', 'postalCode', 'actions'];
 
   constructor(private dataService: CustomerService, public _dialog: MatDialog) {
-    this.dialog = new DialogComponent(_dialog);
   }
 
   delete(id: number): void {
-    this.dialog.deleteDialog(id, this.status, this.dataService);
+    this.dialog.deleteDialog(id, this.status, this.dataSource);
   }
 
   init(): void {
     try {
       this.dataSource = new CustomersDataSource(this.dataService, this.status);
+      this.dialog = new DialogComponent(this._dialog, this.dataService);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.table.dataSource = this.dataSource;

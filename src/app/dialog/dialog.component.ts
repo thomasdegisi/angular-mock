@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { catchError, Observable, of, tap } from 'rxjs';
 
-import { DataService } from '../services/data.service';
+import { DbDataSource } from '../services/db-datasource';
+import { DbService } from '../services/db.service';
 import { DbType } from '../models/db-type';
 import { StatusComponent } from '../status/status.component';
 
@@ -17,7 +18,7 @@ export class DialogComponent<T extends DbType> {
   returnTrueLabel: string = '';
   returnFalseLabel: string = '';
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private dataService: DbService<T>) {
   }
 
   dialogResult(
@@ -38,13 +39,14 @@ export class DialogComponent<T extends DbType> {
     return ref.afterClosed();
   }
 
-  deleteDialog(id: number, status: StatusComponent, service: DataService<T>): void {
-    let idDisplay: string = service.idDisplay(id);
+  deleteDialog(id: number, status: StatusComponent, dataSource: DbDataSource<T>): void {
+    let idDisplay: string = this.dataService.idDisplay(id);
 
-    this.dialogResult('', 'Delete' + idDisplay + '?', 'Delete').subscribe((deleteIt) => {
-      if (deleteIt) {
+    this.dialogResult('', 'Delete' + idDisplay + '?', 'Delete').subscribe((_deleteIt) => {
+      if (_deleteIt) {
         status.clear();
-        service.delete(id).pipe(
+        this.dataService.delete(id).pipe(
+          tap(() => dataSource.delete(id)),
           tap(() => status.showStatus('Deleted ' + idDisplay + '.')),
           catchError((err) => {
             status.showError(err);

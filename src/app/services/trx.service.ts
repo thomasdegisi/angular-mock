@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { DataService } from './data.service';
+import { DbService } from './db.service';
 import { ALL_TYPES_TYPE_ID, Trx } from 'src/app/models/trx';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TrxService extends DataService<Trx> {
+export class TrxService extends DbService<Trx> {
   constructor(private _http: HttpClient) {
     super();
     this.name = 'transaction';
