@@ -1,6 +1,6 @@
 import { Customer } from 'src/app/models/customer';
 
-export const CUSTOMER_LIST: Customer[] = [
+export var customerList: Customer[] = [
   {
     id: 1,
     firstName: 'Chili',

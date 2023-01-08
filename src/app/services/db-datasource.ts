@@ -1,4 +1,5 @@
 import { DataSource } from '@angular/cdk/collections';
+import { Injectable } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
@@ -13,6 +14,9 @@ import { StatusComponent } from '../status/status.component';
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
+@Injectable({
+  providedIn: 'root'
+})
 export abstract class DbDataSource<T extends DbType> extends DataSource<T> {
   public data: T[] = [];
   public paginator: MatPaginator | undefined;
@@ -44,8 +48,12 @@ export abstract class DbDataSource<T extends DbType> extends DataSource<T> {
     }
   }
 
+  public add(item: T): void {
+    this.data.push(item);
+  }
+
   public delete(id: number): void {
-    this.data = this.data.filter((_item) => _item.id != id)
+    this.data = this.data.filter((_item) => _item.id != id);
   }
 
   /**
@@ -78,4 +86,10 @@ export abstract class DbDataSource<T extends DbType> extends DataSource<T> {
    * this would be replaced by requesting the appropriate data from the server.
    */
   abstract getSortedData(_data: T[] | PageEvent | Sort): T[];
+
+  public update(item: T): void {
+    const index = this.data.findIndex((_item) => item.id == _item.id)
+
+    this.data[index] = item;
+  }
 }

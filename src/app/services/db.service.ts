@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, retry, tap } from 'rxjs';
+import { Observable, retry } from 'rxjs';
 
 import { DbType } from '../models/db-type';
 
@@ -10,13 +10,12 @@ import { DbType } from '../models/db-type';
 export class DbService<T extends DbType> {
   protected name = 'unknown'
   protected url = '/unknown';
-  protected http!: HttpClient;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor() {
+  constructor(protected http: HttpClient) {
   }
 
   add(_item: T): Observable<T> {

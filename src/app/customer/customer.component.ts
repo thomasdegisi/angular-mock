@@ -1,9 +1,9 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Location } from '@angular/common';
 import { delay, Observable, tap } from 'rxjs';
 
+import { CustomersDataSource } from '../customers/customers-datasource';
 import { CustomerService } from '../services/customer.service';
 import { Customer, NEW } from '../models/customer';
 import { StatusComponent } from '../status/status.component';
@@ -15,6 +15,7 @@ import { StatusComponent } from '../status/status.component';
 })
 export class CustomerComponent implements AfterViewInit {
   @ViewChild(StatusComponent) status!: StatusComponent;
+  dataSource!: CustomersDataSource;
   item: Customer = NEW;
   form: FormGroup = this.fb.group({
     id: [null],
@@ -96,7 +97,7 @@ export class CustomerComponent implements AfterViewInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private location: Location,
+    private router: Router,
     private service: CustomerService) {}
 
   getMessageTail(): string {
@@ -122,13 +123,13 @@ export class CustomerComponent implements AfterViewInit {
             Validators.required, Validators.minLength(5), Validators.maxLength(5)])
           ],
         });
-        this.status.showStatus('Got' + this.getMessageTail());
+        this.status.statusMessage = 'Got' + this.getMessageTail();
       });
     }
   }
 
   goBack(): void {
-    this.location.back();
+    this.router.navigateByUrl('/customers');
   }
 
   ngAfterViewInit(): void {
@@ -151,10 +152,15 @@ export class CustomerComponent implements AfterViewInit {
 
     observable.pipe(
       tap((_item) => {
+        this.dataSource = new CustomersDataSource(this.service, this.status);
+
         if (this.item.id == null) {
           this.item = _item;
+          this.dataSource.add(_item);
+        } else {
+          this.dataSource.update(_item);
         }
-        this.status.showStatus(messageHead + this.getMessageTail());
+        this.status.statusMessage = messageHead + this.getMessageTail();
       }),
       delay(1500),
     ).subscribe(() => this.goBack());

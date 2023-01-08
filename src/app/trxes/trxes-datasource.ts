@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { DbDataSource } from '../services/db-datasource';
@@ -10,9 +11,13 @@ import { TrxService } from '../services/trx.service';
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
+@Injectable({
+  providedIn: 'root'
+})
 export class TrxesDataSource extends DbDataSource<Trx> {
+  public typeId!: number;
 
-  constructor(public override service: TrxService, public override status: StatusComponent, private typeId: number) {
+  constructor(public override service: TrxService, public override status: StatusComponent) {
     super(service, status);
   }
 
@@ -21,7 +26,7 @@ export class TrxesDataSource extends DbDataSource<Trx> {
 
     observable.subscribe(_data => {
       this.data = _data;
-      this.status.showStatus('Got ' + _data.length + ' transactions.');
+      this.status.statusMessage = 'Got ' + _data.length + ' transactions.';
     });
     return observable;
   }

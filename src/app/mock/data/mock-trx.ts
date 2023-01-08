@@ -7,7 +7,7 @@ import {
   Trx,
 } from 'src/app/models/trx';
 
-export const TRX_LIST: Trx[] = [
+export var trxList: Trx[] = [
   {
     id: 1,
     typeId: TYPE_TYPE_ID,

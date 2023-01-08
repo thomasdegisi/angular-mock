@@ -47,7 +47,7 @@ export class DialogComponent<T extends DbType> {
         status.clear();
         this.dataService.delete(id).pipe(
           tap(() => dataSource.delete(id)),
-          tap(() => status.showStatus('Deleted ' + idDisplay + '.')),
+          tap(() => status.statusMessage = 'Deleted ' + idDisplay + '.'),
           catchError((err) => {
             status.showError(err);
             return of([]);

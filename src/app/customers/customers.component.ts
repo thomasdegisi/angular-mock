@@ -25,8 +25,9 @@ export class CustomersComponent implements AfterViewInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'firstName', 'lastName', 'address', 'city', 'state', 'postalCode', 'actions'];
 
-  constructor(private dataService: CustomerService, public _dialog: MatDialog) {
-  }
+  constructor(
+    private dataService: CustomerService,
+    public _dialog: MatDialog) {}
 
   delete(id: number): void {
     this.dialog.deleteDialog(id, this.status, this.dataSource);

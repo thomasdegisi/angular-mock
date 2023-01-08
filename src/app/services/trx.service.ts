@@ -9,10 +9,9 @@ import { ALL_TYPES_TYPE_ID, Trx } from 'src/app/models/trx';
 })
 export class TrxService extends DbService<Trx> {
   constructor(private _http: HttpClient) {
-    super();
+    super(_http);
     this.name = 'transaction';
     this.url = 'api/trxes';
-    this.http = _http;
   }
 
   getListByType(typeId: number): Observable<Trx[]> {

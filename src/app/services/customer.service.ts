@@ -8,9 +8,8 @@ import { DbService } from './db.service';
 })
 export class CustomerService extends DbService<Customer> {
   constructor(private _http: HttpClient) {
-    super();
+    super(_http);
     this.name = 'customer';
     this.url = 'api/customers';
-    this.http = _http;
   }
 }

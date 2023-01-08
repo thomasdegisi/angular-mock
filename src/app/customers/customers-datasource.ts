@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
 import { Observable } from 'rxjs';
@@ -10,6 +11,9 @@ import { DbDataSource } from '../services/db-datasource';
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
+@Injectable({
+  providedIn: 'root'
+})
 export class CustomersDataSource extends DbDataSource<Customer> {
 
   getList(): Observable<Customer[]> {
@@ -17,7 +21,7 @@ export class CustomersDataSource extends DbDataSource<Customer> {
 
     observable.subscribe(_data => {
       this.data = _data;
-      this.status.showStatus('Got ' + _data.length + ' customers.');
+      this.status.statusMessage = 'Got ' + _data.length + ' customers.';
     });
     return observable;
   }

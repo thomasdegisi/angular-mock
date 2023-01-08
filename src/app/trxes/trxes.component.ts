@@ -36,9 +36,7 @@ export class TrxesComponent implements AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     private dataService: TrxService,
-    public _dialog: MatDialog
-  ) {
-  }
+    public _dialog: MatDialog) {}
 
   delete(id: number): void {
     this.dialog.deleteDialog(id, this.status, this.dataSource);
@@ -66,7 +64,8 @@ export class TrxesComponent implements AfterViewInit {
             break;
         }
 
-        this.dataSource = new TrxesDataSource(this.dataService, this.status, this.typeId);
+        this.dataSource = new TrxesDataSource(this.dataService, this.status);
+        this.dataSource.typeId = this.typeId;
         this.dialog = new DialogComponent(this._dialog, this.dataService);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;

@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
-import { CUSTOMER_LIST } from '../data/mock-customers';
+import { customerList } from '../data/mock-customers';
 import { DbType, ID_MIN } from '../../models/db-type';
-import { TRX_LIST } from '../data/mock-trx';
+import { trxList } from '../data/mock-trx';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InMemoryDataService implements InMemoryDbService {
+  appData = { customers: customerList, trxes: trxList };
+
   createDb() {
-    const customers = CUSTOMER_LIST;
-    const trxes = TRX_LIST;
-    return {customers: customers, trxes: trxes};
+    return this.appData;
   }
 
   private nullToMin(id: number | null) {

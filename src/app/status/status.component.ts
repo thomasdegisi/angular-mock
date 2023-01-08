@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./status.component.scss']
 })
 export class StatusComponent {
-  errorMessage = '';
-  statusMessage = '';
+  public errorMessage = '';
+  public statusMessage = '';
 
   constructor() { }
 
@@ -26,9 +26,5 @@ export class StatusComponent {
 
   showError(exception: any): void {
     this.errorMessage = exception.toString();
-  }
-
-  showStatus(message: string): void {
-    this.statusMessage = message;
   }
 }

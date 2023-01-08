@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { delay, Observable, tap } from 'rxjs';
 
 import { MAX_TRX_TYPE_ID, NEW, Trx, TYPE_TYPE_ID } from '../models/trx';
+import { TrxesDataSource } from '../trxes/trxes-datasource';
 import { TrxService } from '../services/trx.service';
 import { StatusComponent } from '../status/status.component';
 
@@ -15,6 +16,7 @@ import { StatusComponent } from '../status/status.component';
 })
 export class TrxComponent implements AfterViewInit {
   @ViewChild(StatusComponent) status!: StatusComponent;
+  dataSource!: TrxesDataSource;
   item: Trx = NEW;
   minTypeId = TYPE_TYPE_ID;
   maxTypeId = MAX_TRX_TYPE_ID;
@@ -81,10 +83,15 @@ export class TrxComponent implements AfterViewInit {
 
     observable.pipe(
       tap((_item) => {
+        this.dataSource = new TrxesDataSource(this.service, this.status);
+
         if (this.item.id == null) {
           this.item = _item;
+          this.dataSource.add(_item);
+        } else {
+          this.dataSource.update(_item);
         }
-        this.status.showStatus(messageHead + this.getMessageTail());
+        this.status.statusMessage = messageHead + this.getMessageTail();
       }),
       delay(2000),
     ).subscribe(() => this.goBack());
