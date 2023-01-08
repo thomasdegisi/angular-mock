@@ -1,7 +1,6 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Location } from '@angular/common';
 import { delay, Observable, tap } from 'rxjs';
 
 import { MAX_TRX_TYPE_ID, NEW, Trx, TYPE_TYPE_ID } from '../models/trx';
@@ -16,6 +15,7 @@ import { StatusComponent } from '../status/status.component';
 })
 export class TrxComponent implements AfterViewInit {
   @ViewChild(StatusComponent) status!: StatusComponent;
+  baseUrl: string = '';
   dataSource!: TrxesDataSource;
   item: Trx = NEW;
   minTypeId = TYPE_TYPE_ID;
@@ -33,14 +33,25 @@ export class TrxComponent implements AfterViewInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private location: Location,
-    private service: TrxService) {}
+    private router: Router,
+    private service: TrxService) {
+    const urlSegments = this.route.snapshot.url;
+    const count = urlSegments.length;
 
-    getMessageTail(): string {
-      return ' transaction with id(' + this.item.id + ') and typeId(' + this.item.typeId + ').';
+    for (var i = 0; i < count - 1; i++) {
+      if (i > 0) {
+        this.baseUrl += '/';
+      }
+
+      this.baseUrl += urlSegments[i].toString();
     }
+  }
 
-    get(): void {
+  getMessageTail(): string {
+    return ' transaction with id(' + this.item.id + ') and typeId(' + this.item.typeId + ').';
+  }
+
+  get(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
     if (id != 0) {
@@ -60,7 +71,7 @@ export class TrxComponent implements AfterViewInit {
   }
 
   goBack(): void {
-    this.location.back();
+    this.router.navigateByUrl(this.baseUrl);
   }
 
   ngAfterViewInit(): void {

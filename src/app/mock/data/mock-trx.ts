@@ -59,6 +59,15 @@ export var trxList: Trx[] = [
     value: LOYALTY_TRX_TYPE_ID,
   },
   {
+    id: 48,
+    typeId: CHRONOLOGY_EVENT_TYPE_ID,
+    linkId: null,
+    timestamp: new Date(2023, 0, 8, 17, 35, 0, 0),
+    tsFormat: 'YYYY-MM-dd HH:mm',
+    text: 'Submit now routes properly via navigateByUrl().',
+    value: null,
+  },
+  {
     id: 47,
     typeId: CHRONOLOGY_EVENT_TYPE_ID,
     linkId: null,

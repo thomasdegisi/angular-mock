@@ -26,6 +26,7 @@ export class TrxesComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<Trx>;
   @ViewChild(StatusComponent) status!: StatusComponent;
+  baseUrl: string = '';
   dataSource!: TrxesDataSource;
   dialog!: DialogComponent<Trx>;
 
@@ -36,7 +37,18 @@ export class TrxesComponent implements AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     private dataService: TrxService,
-    public _dialog: MatDialog) {}
+    public _dialog: MatDialog) {
+    const urlSegments = this.route.snapshot.url;
+    const count = urlSegments.length;
+
+    for (var i = 0; i < count; i++) {
+      if (i > 0) {
+        this.baseUrl += '/';
+      }
+
+      this.baseUrl += urlSegments[i].toString();
+    }
+  }
 
   delete(id: number): void {
     this.dialog.deleteDialog(id, this.status, this.dataSource);

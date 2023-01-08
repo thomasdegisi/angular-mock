@@ -38,7 +38,7 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
       <td mat-cell *matCellDef="let row">
-        <a class="edit-button" href="/trx/{{row.id}}"><mat-icon>edit</mat-icon></a>
+        <a class="edit-button" href="{{baseUrl}}/{{row.id}}"><mat-icon>edit</mat-icon></a>
         <a class="del-button" (click)="delete(row.id)"><mat-icon>remove_circle_outline</mat-icon></a>
       </td>
     </ng-container>
@@ -59,7 +59,7 @@
   <mat-divider></mat-divider>
   <table>
     <tr>
-      <td><a class="add-button" href="trx/0"><mat-icon>add_circle_outline</mat-icon></a></td>
+      <td><a class="add-button" href="{{baseUrl}}/0"><mat-icon>add_circle_outline</mat-icon></a></td>
       <td><app-status class="grow_1"></app-status></td>
     </tr>
   </table>
